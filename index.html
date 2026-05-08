@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font-sans); color: var(--color-text-primary); background: var(--color-background-primary); }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1rem; }
+.header { text-align: center; margin-bottom: 3rem; border-bottom: 1px solid var(--color-border-tertiary); padding-bottom: 2rem; }
+.header h1 { font-size: 32px; font-weight: 500; margin-bottom: 0.5rem; }
+.header p { font-size: 14px; color: var(--color-text-secondary); margin-bottom: 1rem; }
+.badge { display: inline-block; background: var(--color-background-secondary); padding: 0.5rem 1rem; border-radius: var(--border-radius-md); font-size: 12px; color: var(--color-text-secondary); margin: 0.25rem; }
+.itinerary { margin-bottom: 3rem; }
+.night-block { background: var(--color-background-secondary); border-left: 4px solid var(--color-background-info); padding: 1.5rem; margin-bottom: 1.5rem; border-radius: var(--border-radius-lg); }
+.night-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1rem; }
+.night-number { font-size: 14px; font-weight: 500; color: var(--color-text-info); text-transform: uppercase; letter-spacing: 0.5px; }
+.camp-name { font-size: 20px; font-weight: 500; }
+.night-meta { display: flex; gap: 1rem; font-size: 12px; color: var(--color-text-secondary); margin-bottom: 1rem; flex-wrap: wrap; }
+.meta-item { display: flex; align-items: center; gap: 0.4rem; }
+.night-body { margin-bottom: 1rem; }
+.night-body p { font-size: 14px; line-height: 1.6; margin-bottom: 0.75rem; color: var(--color-text-primary); }
+.why-list { font-size: 14px; line-height: 1.6; margin-left: 1.5rem; }
+.why-list li { margin-bottom: 0.5rem; color: var(--color-text-primary); }
+.highlight { font-weight: 500; color: var(--color-text-primary); }
+.links-row { display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
+.link-btn { font-size: 12px; padding: 0.5rem 1rem; background: var(--color-background-primary); border: 1px solid var(--color-border-secondary); border-radius: var(--border-radius-md); color: var(--color-text-primary); text-decoration: none; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.4rem; }
+.link-btn:hover { border-color: var(--color-border-primary); background: var(--color-background-tertiary); }
+.section-title { font-size: 20px; font-weight: 500; margin-top: 2rem; margin-bottom: 1.5rem; }
+.faq { background: var(--color-background-secondary); padding: 1.5rem; border-radius: var(--border-radius-lg); margin-bottom: 1rem; }
+.faq-q { font-weight: 500; margin-bottom: 0.5rem; font-size: 14px; }
+.faq-a { font-size: 14px; line-height: 1.6; color: var(--color-text-primary); }
+.budget-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+.budget-card { background: var(--color-background-secondary); padding: 1rem; border-radius: var(--border-radius-lg); border-left: 3px solid var(--color-background-success); }
+.budget-label { font-size: 12px; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; }
+.budget-value { font-size: 18px; font-weight: 500; color: var(--color-text-primary); }
+.tips { background: var(--color-background-secondary); padding: 1.5rem; border-radius: var(--border-radius-lg); margin-bottom: 2rem; }
+.tips h3 { font-size: 16px; font-weight: 500; margin-bottom: 1rem; }
+.tips ol { margin-left: 1.5rem; }
+.tips li { font-size: 14px; line-height: 1.6; margin-bottom: 0.75rem; }
+.key-takeaway { background: var(--color-background-warning); padding: 1.5rem; border-radius: var(--border-radius-lg); margin-bottom: 2rem; border-left: 4px solid var(--color-text-warning); }
+.key-takeaway p { font-size: 14px; line-height: 1.7; color: var(--color-text-primary); }
+.icon { display: inline-block; width: 20px; height: 20px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Tanzania Safari</h1>
+    <p>Early December • 5 nights / 6 days • Landscape & Solitude</p>
+    <div style="margin-top: 1rem;">
+      <span class="badge"><i class="ti ti-map-pin" style="font-size: 12px; margin-right: 0.3rem;"></i>Arusha • Ngorongoro • Serengeti</span>
+      <span class="badge"><i class="ti ti-calendar" style="font-size: 12px; margin-right: 0.3rem;"></i>Dec 1–6, 2026</span>
+    </div>
+  </div>
+
+  <div class="itinerary">
+    <!-- Night 1 -->
+    <div class="night-block">
+      <div class="night-header">
+        <span class="night-number">Day 1</span>
+        <span class="camp-name">WADEMAC Arusha Inn</span>
+      </div>
+      <div class="night-meta">
+        <span class="meta-item"><i class="ti ti-bed-2" style="font-size: 14px;"></i> 1 night</span>
+        <span class="meta-item"><i class="ti ti-map-pin" style="font-size: 14px;"></i> Arusha (outskirts)</span>
+        <span class="meta-item"><i class="ti ti-wallet" style="font-size: 14px;"></i> $80–130</span>
+      </div>
+      <div class="night-body">
+        <p><span class="highlight">Arrival & acclimatization.</span> Fly into Kilimanjaro International Airport (KIA). 1.5-hour drive to Arusha (avoid town center). WADEMAC is a quiet, boutique inn on the outskirts with Mt. Meru views, excellent staff, and a homey atmosphere. Light dinner, early rest.</p>
+        <ul class="why-list">
+          <li>Small, authentic, warm hospitality</li>
+          <li>Quiet location away from Arusha hustle</li>
+          <li>Perfect buffer night before heading into the landscape</li>
+        </ul>
+        <div class="links-row">
+          <a class="link-btn" href="http://wademacarushainn.com/" target="_blank"><i class="ti ti-external-link" style="font-size: 14px;"></i> Website</a>
+          <a class="link-btn" href="https://maps.google.com/?cid=4142082176509760279" target="_blank"><i class="ti ti-map-pin" style="font-size: 14px;"></i> Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Night 2 -->
+    <div class="night-block">
+      <div class="night-header">
+        <span class="night-number">Day 2</span>
+        <span class="camp-name">Ngorongoro Lodge (Melia Collection)</span>
+      </div>
+      <div class="night-meta">
+        <span class="meta-item"><i class="ti ti-bed-2" style="font-size: 14px;"></i> 1 night</span>
+        <span class="meta-item"><i class="ti ti-map-pin" style="font-size: 14px;"></i> Crater rim</span>
+        <span class="meta-item"><i class="ti ti-wallet" style="font-size: 14px;"></i> $350–450</span>
+      </div>
+      <div class="night-body">
+        <p><span class="highlight">Crater rim experience (smart timing).</span> 3-hour drive from Arusha. Stunning panoramic views of the Crater from your room. Excellent Spanish management, outstanding chef. <span class="highlight">Descend into the Crater early (6:30–7:30 AM)</span> to beat the 9:00 AM crowds. Spend 3–4 hours on the floor, then depart by early afternoon. This avoids tourist congestion and gives you prime light.</p>
+        <ul class="why-list">
+          <li>Direct access from lodge property (skip main gate queues)</li>
+          <li>Breakfast with a view of the world's largest caldera</li>
+          <li>Strategic timing means you own the Crater, not the reverse</li>
+        </ul>
+        <div class="links-row">
+          <a class="link-btn" href="https://www.melia.com/en/hotels/tanzania/ngorongoro-conservation-area/ngorongoro-lodge-melia-collection" target="_blank"><i class="ti ti-external-link" style="font-size: 14px;"></i> Website</a>
+          <a class="link-btn" href="https://maps.google.com/?cid=2501161797835531435" target="_blank"><i class="ti ti-map-pin" style="font-size: 14px;"></i> Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Night 3 -->
+    <div class="night-block">
+      <div class="night-header">
+        <span class="night-number">Day 3</span>
+        <span class="camp-name">Gnu Ndutu Camp</span>
+      </div>
+      <div class="night-meta">
+        <span class="meta-item"><i class="ti ti-bed-2" style="font-size: 14px;"></i> 1 night</span>
+        <span class="meta-item"><i class="ti ti-map-pin" style="font-size: 14px;"></i> Ndutu area (conservation area)</span>
+        <span class="meta-item"><i class="ti ti-wallet" style="font-size: 14px;"></i> $400–500 (all-inclusive)</span>
+      </div>
+      <div class="night-body">
+        <p><span class="highlight">Southern Serengeti green-season landscape.</span> Late morning transfer (~2.5 hrs) from Ngorongoro. Small camp (10 tents), immaculate, staff consistently rated as extraordinary. Located in the Ngorongoro Conservation Area (not inside Serengeti Park), so you experience the ecosystem without heavy foot traffic. December = calving season, lush plains, dramatic skies. Almost no tourists.</p>
+        <ul class="why-list">
+          <li>Intimate, genuine luxury without pretense</li>
+          <li>Ndutu Lake, herds of zebra and wildebeest</li>
+          <li>Cinematic landscape, peaceful camp atmosphere</li>
+          <li>All-inclusive includes excellent guiding</li>
+        </ul>
+        <div class="links-row">
+          <a class="link-btn" href="http://www.gnucamp.com/" target="_blank"><i class="ti ti-external-link" style="font-size: 14px;"></i> Website</a>
+          <a class="link-btn" href="https://maps.google.com/?cid=5565571293152199984" target="_blank"><i class="ti ti-map-pin" style="font-size: 14px;"></i> Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Night 4 -->
+    <div class="night-block">
+      <div class="night-header">
+        <span class="night-number">Day 4</span>
+        <span class="camp-name">Osero Serengeti Tented Camp</span>
+      </div>
+      <div class="night-meta">
+        <span class="meta-item"><i class="ti ti-bed-2" style="font-size: 14px;"></i> 2 nights</span>
+        <span class="meta-item"><i class="ti ti-map-pin" style="font-size: 14px;"></i> Eastern Serengeti (Seronera)</span>
+        <span class="meta-item"><i class="ti ti-wallet" style="font-size: 14px;"></i> $350–450 per night</span>
+      </div>
+      <div class="night-body">
+        <p><span class="highlight">Remote Serengeti wilderness.</span> Midday transfer (~2.5 hrs) from Ndutu. Seasonal tented camp in the heart of the Serengeti. Exceptional beds (travelers rave), excellent food, warm staff. December offers lush plains, elephant and lion visitations, and a genuinely remote atmosphere with modern comfort. Two full days let you sink into the landscape without rushing.</p>
+        <ul class="why-list">
+          <li>Some of the most comfortable beds in Tanzania (no exaggeration)</li>
+          <li>Remote location with animals roaming the property at dawn</li>
+          <li>Two days = full day of exploration, no transfer fatigue</li>
+          <li>Pre-dawn and sunset game drives capture light perfectly</li>
+        </ul>
+        <div class="links-row">
+          <a class="link-btn" href="http://oseroserengeti.com/" target="_blank"><i class="ti ti-external-link" style="font-size: 14px;"></i> Website</a>
+          <a class="link-btn" href="https://maps.google.com/?cid=11824657968680110519" target="_blank"><i class="ti ti-map-pin" style="font-size: 14px;"></i> Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 6 -->
+    <div class="night-block">
+      <div class="night-header">
+        <span class="night-number">Day 6</span>
+        <span class="camp-name">Return to Kilimanjaro</span>
+      </div>
+      <div class="night-meta">
+        <span class="meta-item"><i class="ti ti-map-pin" style="font-size: 14px;"></i> Seronera → KIA</span>
+        <span class="meta-item"><i class="ti ti-clock" style="font-size: 14px;"></i> 3.5–4 hrs</span>
+      </div>
+      <div class="night-body">
+        <p>Pre-dawn game drive from Osero (Seronera area), then depart for KIA around midday. Scenic landscapes on the way out—acacia woodland, river valleys. Evening departure flight home.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">Why early December?</div>
+  <div class="faq">
+    <div class="faq-q">Green-season landscape</div>
+    <div class="faq-a">Short rains (Nov–Dec) create lush plains, dramatic skies, and incredible light for photography. You're visiting during the most cinematic time of year.</div>
+  </div>
+  <div class="faq">
+    <div class="faq-q">Dramatically fewer crowds</div>
+    <div class="faq-a">Schools are still in session (holidays start late Dec). Tourist numbers at Ngorongoro Crater and camps are significantly lower. You'll have guides almost to yourself.</div>
+  </div>
+  <div class="faq">
+    <div class="faq-q">Calving season at Ndutu</div>
+    <div class="faq-a">Wildebeest and zebra are giving birth, creating calm, concentrated wildlife viewing. No chaotic river crossings—just mothers, calves, and predators in green grass. Serene and authentic.</div>
+  </div>
+  <div class="faq">
+    <div class="faq-q">Perfect for your travel style</div>
+    <div class="faq-a">You get exactly what you want: landscape + solitude + excellent guiding, without the Big Five circus.</div>
+  </div>
+
+  <div class="section-title">Budget (per person)</div>
+  <div class="budget-grid">
+    <div class="budget-card">
+      <div class="budget-label">International flights</div>
+      <div class="budget-value">$1,000–1,800</div>
+    </div>
+    <div class="budget-card">
+      <div class="budget-label">Camps & lodging</div>
+      <div class="budget-value">$1,200–1,600</div>
+    </div>
+    <div class="budget-card">
+      <div class="budget-label">Park fees & guides</div>
+      <div class="budget-value">$200–300</div>
+    </div>
+    <div class="budget-card">
+      <div class="budget-label">Transfers & transport</div>
+      <div class="budget-value">$400–600</div>
+    </div>
+  </div>
+  <div style="background: var(--color-background-secondary); padding: 1.5rem; border-radius: var(--border-radius-lg); margin-bottom: 2rem;">
+    <div style="font-size: 12px; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Total per person</div>
+    <div style="font-size: 24px; font-weight: 500;">$3,200–4,500</div>
+    <p style="font-size: 13px; color: var(--color-text-secondary); margin-top: 0.75rem;">For 2 people: ~$6,500–9,000 total</p>
+  </div>
+
+  <div class="section-title">Booking tips</div>
+  <div class="tips">
+    <ol>
+      <li><span class="highlight">Book directly or via trusted operators</span> (Asilia Africa, Nomad Tanzania, Elewana). December discounts often available for shoulder season.</li>
+      <li><span class="highlight">Request a landscape-focused guide.</span> When booking, ask camps to assign guides fluent in natural history and scenery, not just animal spotting.</li>
+      <li><span class="highlight">Confirm Crater descent timing.</span> Request the 6:30–7:30 AM slot to avoid crowds and capture best light.</li>
+      <li><span class="highlight">Ask about weather.</span> Confirm December conditions and road status—post-rain roads can be muddy, which actually keeps tourists away (a feature, not a bug).</li>
+      <li><span class="highlight">Internal flights optional.</span> Arusha → Seronera airstrip is flyable but adds cost. Driving transfers work well and build anticipation.</li>
+    </ol>
+  </div>
+
+  <div class="section-title">Should I include Tarangire?</div>
+  <div class="faq">
+    <div class="faq-q">Short answer: No.</div>
+    <div class="faq-a">Tarangire is stunning but shines June–October when animals concentrate at the river. December = water spreads, wildlife disperses. Adding it would cut into your 5-night window and pull you away from your core route (Ndutu + Eastern Serengeti), which is designed exactly for what you want: landscape, solitude, and excellent guiding. Better to spend a second night at Osero instead and deepen that experience.</div>
+  </div>
+
+  <div class="key-takeaway">
+    <p><span class="highlight">Bottom line:</span> Your instincts are excellent. Early December in Tanzania is deeply underrated for travelers who want landscape and calm over animal density. The camps here prioritize atmosphere and guiding over thread count. This itinerary delivers exactly what you've asked for—and you'll have the Serengeti largely to yourself.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
