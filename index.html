@@ -3,794 +3,766 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Tanzania Safari — December 2026</title>
+    <title>Tanzania — A Quieter Safari</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Sora:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --green-deep: #1a2e1f;
-        --green-forest: #2d4a35;
-        --green-mid: #3d6b47;
-        --green-light: #e8f0e9;
-        --gold: #c9a84c;
-        --gold-light: #f5ecd4;
-        --gold-pale: #fdf8ee;
-        --cream: #faf8f3;
-        --cream-dark: #f2ede3;
-        --text-dark: #1a1a18;
-        --text-mid: #4a4a42;
-        --text-muted: #8a8a7a;
-        --border: #e0d9cc;
-        --border-light: #ede8df;
+        --ink: #1c1f1a;
+        --charcoal: #2e3028;
+        --green: #2a3d2f;
+        --moss: #5c7a50;
+        --clay: #9c6b4a;
+        --sand: #c8b49a;
+        --ivory: #f5f0e8;
+        --cream: #faf7f2;
         --white: #ffffff;
-        --radius-sm: 6px;
-        --radius-md: 12px;
-        --radius-lg: 18px;
-        --radius-xl: 24px;
+        --text: #2e3028;
+        --muted: #7a7a6a;
+        --border: #e2ddd5;
       }
-
-      * {
+      *,
+      *::before,
+      *::after {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-
+      html {
+        scroll-behavior: smooth;
+      }
       body {
-        font-family: "Sora", sans-serif;
-        color: var(--text-dark);
+        font-family: "Inter", sans-serif;
         background: var(--cream);
-        line-height: 1.6;
+        color: var(--text);
         -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      img {
+        display: block;
+        width: 100%;
+        object-fit: cover;
       }
 
-      /* ── HERO ── */
-      .hero {
-        background: linear-gradient(
-          160deg,
-          var(--green-deep) 0%,
-          var(--green-forest) 55%,
-          #3a5c42 100%
-        );
-        padding: 5rem 1.5rem 4rem;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
+      /* PROGRESS */
+      #prog {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2px;
+        width: 0;
+        background: linear-gradient(90deg, var(--moss), var(--sand));
+        z-index: 1000;
+        transition: width 0.08s linear;
       }
-      .hero::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(
-          ellipse at 60% 40%,
-          rgba(201, 168, 76, 0.12) 0%,
-          transparent 70%
-        );
-        pointer-events: none;
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 900;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.4rem 3rem;
+        transition: background 0.4s;
       }
-      .hero-eyebrow {
-        font-family: "Sora", sans-serif;
-        font-size: 11px;
-        font-weight: 600;
+      nav.scrolled {
+        background: rgba(28, 31, 26, 0.85);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+      }
+      .nav-logo {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1rem;
+        font-weight: 400;
         letter-spacing: 3px;
         text-transform: uppercase;
-        color: var(--gold);
-        margin-bottom: 1.25rem;
+        color: var(--white);
+        text-decoration: none;
+      }
+      .nav-cta {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        padding-bottom: 1px;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+      .nav-cta:hover {
+        color: var(--white);
+        border-color: var(--white);
+      }
+
+      /* HERO */
+      .hero {
+        position: relative;
+        height: 100vh;
+        min-height: 600px;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+      }
+      .hero-img {
+        position: absolute;
+        inset: 0;
+        background: url("https://images.unsplash.com/photo-1504432842672-1a79f78e4084?w=1200&q=80")
+          center/cover no-repeat;
+        will-change: transform;
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(20, 28, 18, 0.15) 0%,
+          rgba(20, 28, 18, 0.05) 35%,
+          rgba(20, 28, 18, 0.6) 72%,
+          rgba(20, 28, 18, 0.92) 100%
+        );
+      }
+      .hero-content {
+        position: relative;
+        padding: 0 3rem 5rem;
+        max-width: 800px;
+      }
+      .hero-eyebrow {
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 3.5px;
+        text-transform: uppercase;
+        color: var(--sand);
+        margin-bottom: 1.4rem;
       }
       .hero h1 {
-        font-family: "Playfair Display", serif;
-        font-size: clamp(2.4rem, 6vw, 4rem);
-        font-weight: 500;
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(3rem, 7vw, 5.5rem);
+        font-weight: 300;
+        line-height: 1.05;
         color: var(--white);
-        line-height: 1.15;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
       }
       .hero h1 em {
         font-style: italic;
-        color: #e8d9a8;
+        color: #d4c9a8;
       }
       .hero-sub {
         font-size: 15px;
-        color: rgba(255, 255, 255, 0.65);
         font-weight: 300;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.8;
+        max-width: 520px;
         margin-bottom: 2.5rem;
-        letter-spacing: 0.3px;
       }
-      .hero-badges {
+      .hero-meta {
         display: flex;
-        gap: 0.75rem;
-        justify-content: center;
+        gap: 2rem;
         flex-wrap: wrap;
       }
-      .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        -webkit-backdrop-filter: blur(8px);
-        backdrop-filter: blur(8px);
-        padding: 0.5rem 1.1rem;
-        border-radius: 100px;
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.85);
-        font-weight: 400;
-        letter-spacing: 0.2px;
+      .hero-meta span {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.45);
       }
-      .hero-badge svg {
-        opacity: 0.7;
-        flex-shrink: 0;
-      }
-
-      /* ── CONTAINER ── */
-      .container {
-        max-width: 860px;
-        margin: 0 auto;
-        padding: 3.5rem 1.5rem 5rem;
-      }
-
-      /* ── SECTION HEADINGS ── */
-      .section-heading {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 2rem;
-        margin-top: 3.5rem;
-      }
-      .section-heading:first-child {
-        margin-top: 0;
-      }
-      .section-heading h2 {
-        font-family: "Playfair Display", serif;
-        font-size: 1.65rem;
+      .hero-meta span strong {
+        color: rgba(255, 255, 255, 0.82);
         font-weight: 500;
-        color: var(--green-deep);
       }
-      .section-heading-line {
-        flex: 1;
-        height: 1px;
-        background: var(--border);
-      }
-
-      /* ── DAY CARDS ── */
-      .itinerary {
-        margin-bottom: 1rem;
-      }
-
-      .day-card {
-        background: var(--white);
-        border: 1px solid var(--border-light);
-        border-radius: var(--radius-xl);
-        margin-bottom: 1.5rem;
-        overflow: hidden;
-        transition:
-          box-shadow 0.25s ease,
-          transform 0.25s ease;
-      }
-      .day-card:hover {
-        box-shadow: 0 12px 40px rgba(26, 46, 31, 0.1);
-        transform: translateY(-2px);
-      }
-
-      .card-header {
-        display: flex;
-        align-items: stretch;
-        border-bottom: 1px solid var(--border-light);
-      }
-      .card-day-badge {
-        background: var(--green-forest);
-        color: var(--white);
-        padding: 1.25rem 1.5rem;
+      .scroll-down {
+        position: absolute;
+        bottom: 2.5rem;
+        right: 3rem;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        min-width: 80px;
-        flex-shrink: 0;
-      }
-      .card-day-label {
+        gap: 0.5rem;
+        color: rgba(255, 255, 255, 0.3);
         font-size: 9px;
-        font-weight: 600;
         letter-spacing: 2px;
         text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.6);
-        margin-bottom: 0.2rem;
+        animation: nudge 2.2s ease-in-out infinite;
       }
-      .card-day-num {
-        font-family: "Playfair Display", serif;
-        font-size: 2rem;
-        font-weight: 400;
-        color: var(--white);
-        line-height: 1;
+      .scroll-down svg {
+        opacity: 0.35;
       }
-      .card-header-info {
-        padding: 1.25rem 1.5rem;
-        flex: 1;
-      }
-      .card-camp-name {
-        font-family: "Playfair Display", serif;
-        font-size: 1.2rem;
-        font-weight: 500;
-        color: var(--green-deep);
-        margin-bottom: 0.6rem;
-      }
-      .card-meta {
-        display: flex;
-        gap: 1.25rem;
-        flex-wrap: wrap;
-      }
-      .meta-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.35rem;
-        font-size: 11.5px;
-        color: var(--text-muted);
-        font-weight: 400;
-      }
-      .meta-pill svg {
-        flex-shrink: 0;
-      }
-      .meta-pill.price {
-        color: var(--green-mid);
-        font-weight: 500;
+      @keyframes nudge {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(7px);
+        }
       }
 
-      .card-body {
-        padding: 1.5rem;
+      /* SECTION SHARED */
+      section {
+        padding: 7rem 3rem;
       }
-
-      .card-lead {
-        font-size: 14.5px;
-        line-height: 1.75;
-        color: var(--text-mid);
+      .section-label {
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--moss);
         margin-bottom: 1.25rem;
       }
-      .card-lead strong {
-        color: var(--text-dark);
-        font-weight: 600;
+      .section-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(2rem, 4.5vw, 3.2rem);
+        font-weight: 300;
+        line-height: 1.2;
+        color: var(--green);
+        margin-bottom: 1.5rem;
+      }
+      .section-title em {
+        font-style: italic;
+      }
+      .section-body {
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 1.85;
+        color: var(--muted);
+        max-width: 560px;
       }
 
-      .highlights-list {
-        list-style: none;
-        margin-bottom: 1.25rem;
+      /* POSITIONING STRIP */
+      .positioning {
+        background: var(--green);
+        padding: 5.5rem 3rem;
+        text-align: center;
+      }
+      .positioning blockquote {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+        font-weight: 300;
+        font-style: italic;
+        line-height: 1.45;
+        color: #d4c9a8;
+        max-width: 760px;
+        margin: 0 auto 1.5rem;
+      }
+      .positioning cite {
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.3);
+        font-style: normal;
+      }
+
+      /* MOOD CARDS */
+      .mood-section {
+        background: var(--ivory);
+        padding: 7rem 3rem;
+      }
+      .mood-grid {
         display: grid;
-        gap: 0.5rem;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 3.5rem;
       }
-      .highlights-list li {
-        display: flex;
-        align-items: flex-start;
-        gap: 0.6rem;
-        font-size: 13.5px;
-        color: var(--text-mid);
-        line-height: 1.55;
-      }
-      .highlights-list li::before {
-        content: "";
-        width: 6px;
-        height: 6px;
-        background: var(--gold);
-        border-radius: 50%;
-        flex-shrink: 0;
-        margin-top: 0.45em;
-      }
-
-      .card-actions {
-        display: flex;
-        gap: 0.75rem;
-        flex-wrap: wrap;
-        padding-top: 1rem;
-        border-top: 1px solid var(--border-light);
-      }
-      .action-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        font-size: 12px;
-        font-weight: 500;
-        font-family: "Sora", sans-serif;
-        padding: 0.5rem 1rem;
-        border-radius: 100px;
-        text-decoration: none;
-        transition: all 0.2s;
-        letter-spacing: 0.2px;
-      }
-      .action-btn-primary {
-        background: var(--green-deep);
-        color: var(--white);
-        border: 1px solid var(--green-deep);
-      }
-      .action-btn-primary:hover {
-        background: var(--green-forest);
-        border-color: var(--green-forest);
-      }
-      .action-btn-secondary {
-        background: transparent;
-        color: var(--text-mid);
-        border: 1px solid var(--border);
-      }
-      .action-btn-secondary:hover {
-        border-color: var(--green-mid);
-        color: var(--green-deep);
-        background: var(--green-light);
-      }
-
-      /* departure card variant */
-      .day-card.departure .card-day-badge {
-        background: var(--cream-dark);
-      }
-      .day-card.departure .card-day-num {
-        color: var(--text-mid);
-      }
-      .day-card.departure .card-day-label {
-        color: var(--text-muted);
-      }
-
-      /* ── FAQ ── */
-      .faq-grid {
-        display: grid;
-        gap: 1rem;
-        margin-bottom: 1rem;
-      }
-      .faq-item {
-        background: var(--white);
-        border: 1px solid var(--border-light);
-        border-radius: var(--radius-lg);
-        padding: 1.4rem 1.5rem;
+      .mood-card {
         position: relative;
-        padding-left: 2rem;
-      }
-      .faq-item::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 4px;
-        background: var(--gold);
-        border-radius: 4px 0 0 4px;
-      }
-      .faq-q {
-        font-family: "Playfair Display", serif;
-        font-size: 1rem;
-        font-weight: 500;
-        color: var(--green-deep);
-        margin-bottom: 0.5rem;
-      }
-      .faq-a {
-        font-size: 13.5px;
-        line-height: 1.75;
-        color: var(--text-mid);
-      }
-
-      /* ── BUDGET ── */
-      .budget-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-        gap: 1rem;
-        margin-bottom: 1.25rem;
-      }
-      .budget-card {
-        background: var(--white);
-        border: 1px solid var(--border-light);
-        border-radius: var(--radius-lg);
-        padding: 1.25rem 1.25rem 1rem;
-        position: relative;
+        border-radius: 18px;
         overflow: hidden;
+        aspect-ratio: 3/4;
+        cursor: default;
       }
-      .budget-card::after {
-        content: "";
+      .mood-card img {
+        height: 100%;
+        transition: transform 0.6s ease;
+      }
+      .mood-card:hover img {
+        transform: scale(1.05);
+      }
+      .mood-card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(20, 28, 18, 0.85) 0%,
+          rgba(20, 28, 18, 0.08) 55%,
+          transparent 100%
+        );
+      }
+      .mood-card-text {
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
-        height: 3px;
-        background: linear-gradient(
-          90deg,
-          var(--gold) 0%,
-          var(--green-mid) 100%
-        );
+        padding: 2rem 1.75rem;
       }
-      .budget-label {
-        font-size: 10.5px;
-        font-weight: 600;
-        letter-spacing: 1.5px;
+      .mood-card-tag {
+        font-size: 9px;
+        letter-spacing: 2.5px;
         text-transform: uppercase;
-        color: var(--text-muted);
+        color: var(--sand);
         margin-bottom: 0.6rem;
       }
-      .budget-value {
-        font-family: "Playfair Display", serif;
-        font-size: 1.35rem;
-        font-weight: 400;
-        color: var(--green-deep);
+      .mood-card-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.6rem;
+        font-weight: 300;
+        color: var(--white);
+        line-height: 1.2;
+        margin-bottom: 0.6rem;
+      }
+      .mood-card-desc {
+        font-size: 12.5px;
+        font-weight: 300;
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.6);
       }
 
-      .budget-total {
-        background: var(--green-deep);
-        border-radius: var(--radius-lg);
-        padding: 1.5rem 2rem;
+      /* ITINERARY */
+      .itinerary-section {
+        background: var(--cream);
+      }
+      .itinerary-inner {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 5rem;
+        max-width: 1100px;
+        margin: 3rem auto 0;
+      }
+      .itinerary-sidebar {
+        position: sticky;
+        top: 8rem;
+        height: fit-content;
+      }
+      .itinerary-sidebar .section-title {
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+      }
+      .itinerary-sidebar p {
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.8;
+        color: var(--muted);
+        margin-top: 1rem;
+      }
+      .day-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .day-item {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+        padding: 2.5rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .day-item:first-child {
+        padding-top: 0;
+      }
+      .day-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 3rem;
+        font-weight: 300;
+        color: var(--border);
+        line-height: 1;
+        min-width: 64px;
+        flex-shrink: 0;
+        transition: color 0.3s;
+      }
+      .day-item:hover .day-num {
+        color: var(--moss);
+      }
+      .day-body {
+        flex: 1;
+      }
+      .day-location {
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--moss);
+        margin-bottom: 0.4rem;
+      }
+      .day-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.35rem;
+        font-weight: 400;
+        color: var(--green);
+        margin-bottom: 0.6rem;
+      }
+      .day-desc {
+        font-size: 13.5px;
+        font-weight: 300;
+        line-height: 1.8;
+        color: var(--muted);
+      }
+      .day-img {
+        width: 140px;
+        flex-shrink: 0;
+        height: 90px;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .day-img img {
+        height: 100%;
+      }
+
+      /* MOODBOARD */
+      .moodboard {
+        background: var(--charcoal);
+        padding: 7rem 3rem;
+      }
+      .moodboard .section-label {
+        color: var(--sand);
+      }
+      .moodboard .section-title {
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .moodboard .section-body {
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .board-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: 300px 260px;
+        gap: 12px;
+        margin-top: 3rem;
+      }
+      .tile {
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+      }
+      .tile img {
+        height: 100%;
+        transition: transform 0.6s ease;
+      }
+      .tile:hover img {
+        transform: scale(1.05);
+      }
+      .tile-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0.75rem 1rem;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+        font-size: 10px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.45);
+      }
+      .t1 {
+        grid-column: 1/6;
+        grid-row: 1;
+      }
+      .t2 {
+        grid-column: 6/9;
+        grid-row: 1;
+      }
+      .t3 {
+        grid-column: 9/13;
+        grid-row: 1;
+      }
+      .t4 {
+        grid-column: 1/4;
+        grid-row: 2;
+      }
+      .t5 {
+        grid-column: 4/8;
+        grid-row: 2;
+      }
+      .t6 {
+        grid-column: 8/13;
+        grid-row: 2;
+      }
+
+      /* OPERATORS */
+      .operators-section {
+        background: var(--cream);
+      }
+      .operators-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 3.5rem;
+      }
+      .op-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        overflow: hidden;
+        transition:
+          box-shadow 0.3s,
+          transform 0.3s;
+      }
+      .op-card:hover {
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+        transform: translateY(-3px);
+      }
+      .op-img {
+        height: 200px;
+        overflow: hidden;
+      }
+      .op-img img {
+        height: 100%;
+        transition: transform 0.6s;
+      }
+      .op-card:hover .op-img img {
+        transform: scale(1.06);
+      }
+      .op-body {
+        padding: 1.75rem;
+      }
+      .op-tag {
+        font-size: 9.5px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--moss);
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+      }
+      .op-name {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.4rem;
+        font-weight: 400;
+        color: var(--green);
+        margin-bottom: 0.6rem;
+      }
+      .op-desc {
+        font-size: 12.5px;
+        font-weight: 300;
+        line-height: 1.78;
+        color: var(--muted);
+      }
+
+      /* CTA */
+      .cta-section {
+        background: var(--green);
+        padding: 8rem 3rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1200&q=80")
+          center/cover no-repeat;
+        opacity: 0.12;
+      }
+      .cta-inner {
+        position: relative;
+      }
+      .cta-section .section-label {
+        color: var(--sand);
+        display: block;
+        margin-bottom: 1.25rem;
+      }
+      .cta-section .section-title {
+        color: rgba(255, 255, 255, 0.92);
+        max-width: 680px;
+        margin: 0 auto 1.5rem;
+      }
+      .cta-section .section-body {
+        color: rgba(255, 255, 255, 0.45);
+        margin: 0 auto 3rem;
+        text-align: center;
+      }
+      .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-family: "Inter", sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--green);
+        background: var(--ivory);
+        border: none;
+        border-radius: 100px;
+        padding: 1rem 2.5rem;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .cta-btn:hover {
+        background: var(--white);
+        transform: translateY(-2px);
+      }
+      .cta-note {
+        display: block;
+        margin-top: 1.5rem;
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.25);
+        letter-spacing: 0.5px;
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--ink);
+        padding: 2.5rem 3rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
         flex-wrap: wrap;
         gap: 1rem;
-        margin-bottom: 2rem;
       }
-      .budget-total-label {
+      footer span {
         font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 2px;
+        letter-spacing: 1.5px;
         text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.5);
-        margin-bottom: 0.3rem;
+        color: rgba(255, 255, 255, 0.22);
       }
-      .budget-total-value {
-        font-family: "Playfair Display", serif;
-        font-size: 1.9rem;
-        font-weight: 400;
-        color: var(--white);
-      }
-      .budget-total-sub {
-        font-size: 12.5px;
-        color: rgba(255, 255, 255, 0.5);
-        margin-top: 0.2rem;
-      }
-
-      /* ── TIPS ── */
-      .tips-list {
-        display: grid;
-        gap: 1rem;
-        margin-bottom: 2rem;
-      }
-      .tip-item {
-        display: flex;
-        gap: 1.25rem;
-        align-items: flex-start;
-        background: var(--white);
-        border: 1px solid var(--border-light);
-        border-radius: var(--radius-lg);
-        padding: 1.25rem 1.5rem;
-      }
-      .tip-number {
-        font-family: "Playfair Display", serif;
-        font-size: 1.5rem;
-        font-weight: 400;
-        color: var(--gold);
-        line-height: 1;
-        flex-shrink: 0;
-        min-width: 28px;
-      }
-      .tip-content {
-        flex: 1;
-      }
-      .tip-content strong {
-        display: block;
-        font-size: 13.5px;
-        font-weight: 600;
-        color: var(--text-dark);
-        margin-bottom: 0.2rem;
-      }
-      .tip-content span {
-        font-size: 13px;
-        color: var(--text-mid);
-        line-height: 1.65;
-      }
-
-      /* ── CALLOUT ── */
-      .callout {
-        background: var(--gold-pale);
-        border: 1px solid #e8d9a0;
-        border-radius: var(--radius-xl);
-        padding: 2rem 2rem 2rem 2rem;
-        margin-bottom: 2rem;
-        position: relative;
-        overflow: hidden;
-      }
-      .callout::before {
-        content: '"';
-        position: absolute;
-        top: -0.5rem;
-        left: 1rem;
-        font-family: "Playfair Display", serif;
-        font-size: 8rem;
-        color: rgba(201, 168, 76, 0.15);
-        line-height: 1;
-        pointer-events: none;
-      }
-      .callout p {
-        font-size: 15px;
-        line-height: 1.8;
-        color: var(--text-mid);
-        position: relative;
-      }
-      .callout p strong {
-        color: var(--green-deep);
-        font-weight: 600;
-      }
-
-      /* ── FOOTER ── */
-      .site-footer {
-        text-align: center;
-        padding: 2rem 1rem 3rem;
-        font-size: 12px;
-        color: var(--text-muted);
-        border-top: 1px solid var(--border);
-      }
-
-      /* ── PROGRESS BAR ── */
-      .scroll-bar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 3px;
-        width: 0%;
-        background: linear-gradient(
-          90deg,
-          var(--gold),
-          #e8c96a,
-          var(--green-mid)
-        );
-        z-index: 9999;
-        transition: width 0.1s linear;
-      }
-
-      /* ── HERO ENHANCEMENTS ── */
-      .hero {
-        min-height: 92vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
-      .hero-particles {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        overflow: hidden;
-      }
-      .particle {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(201, 168, 76, 0.55);
-        animation: drift linear infinite;
-      }
-      @keyframes drift {
-        0% {
-          transform: translateY(110vh) scale(0.5);
-          opacity: 0;
-        }
-        10% {
-          opacity: 1;
-        }
-        90% {
-          opacity: 0.6;
-        }
-        100% {
-          transform: translateY(-10vh) scale(1.1);
-          opacity: 0;
-        }
-      }
-      .hero-scroll-hint {
-        position: absolute;
-        bottom: 2rem;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.4rem;
-        color: rgba(255, 255, 255, 0.4);
-        font-size: 10px;
-        letter-spacing: 2px;
+      footer a {
+        font-size: 11px;
+        letter-spacing: 1.5px;
         text-transform: uppercase;
-        animation: bounce 2s ease-in-out infinite;
+        color: rgba(255, 255, 255, 0.32);
+        text-decoration: none;
+        transition: color 0.2s;
       }
-      @keyframes bounce {
-        0%,
-        100% {
-          transform: translateX(-50%) translateY(0);
-        }
-        50% {
-          transform: translateX(-50%) translateY(6px);
-        }
-      }
-      .hero-scroll-hint svg {
-        opacity: 0.5;
+      footer a:hover {
+        color: rgba(255, 255, 255, 0.7);
       }
 
-      /* eyebrow fade-in */
-      .hero-eyebrow {
-        animation: fadeDown 0.9s ease both;
-      }
-      .hero h1 {
-        animation: fadeDown 0.9s 0.15s ease both;
-      }
-      .hero-sub {
-        animation: fadeDown 0.9s 0.3s ease both;
-      }
-      .hero-badges {
-        animation: fadeDown 0.9s 0.45s ease both;
-      }
-      @keyframes fadeDown {
-        from {
-          opacity: 0;
-          transform: translateY(-18px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* ── SCROLL REVEAL ── */
-      .reveal {
+      /* REVEAL */
+      .r {
         opacity: 0;
-        transform: translateY(32px);
+        transform: translateY(26px);
         transition:
-          opacity 0.65s ease,
-          transform 0.65s ease;
+          opacity 0.7s ease,
+          transform 0.7s ease;
       }
-      .reveal.visible {
+      .r.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .r2 {
+        opacity: 0;
+        transform: translateY(26px);
+        transition:
+          opacity 0.7s 0.12s ease,
+          transform 0.7s 0.12s ease;
+      }
+      .r2.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .r3 {
+        opacity: 0;
+        transform: translateY(26px);
+        transition:
+          opacity 0.7s 0.24s ease,
+          transform 0.7s 0.24s ease;
+      }
+      .r3.in {
         opacity: 1;
         transform: translateY(0);
       }
 
-      /* ── DAY CARD ENHANCEMENTS ── */
-      .card-day-badge {
-        position: relative;
-        overflow: hidden;
-      }
-      .card-day-badge::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.08) 0%,
-          transparent 60%
-        );
-        pointer-events: none;
-      }
-      .day-card:hover .card-day-badge {
-        background: var(--green-mid);
-        transition: background 0.3s ease;
-      }
-      .day-card:hover .card-camp-name {
-        color: var(--green-mid);
-        transition: color 0.3s ease;
-      }
-
-      /* ── ROUTE TIMELINE ── */
-      .timeline-connector {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 2rem;
-        margin: -0.75rem 0;
-        position: relative;
-        z-index: 1;
-      }
-      .timeline-connector::before {
-        content: "";
-        width: 2px;
-        height: 100%;
-        background: linear-gradient(
-          to bottom,
-          var(--green-forest),
-          var(--gold)
-        );
-        opacity: 0.35;
-      }
-
-      /* ── SECTION HEADING ANIMATION ── */
-      .section-heading-line {
-        transform-origin: left;
-        transition: transform 0.8s ease;
-      }
-
-      /* ── RESPONSIVE ── */
-      @media (max-width: 600px) {
-        .hero {
-          padding: 3.5rem 1rem 3rem;
+      /* RESPONSIVE */
+      @media (max-width: 900px) {
+        section {
+          padding: 5rem 1.5rem;
         }
-        .container {
-          padding: 2.5rem 1rem 4rem;
+        nav {
+          padding: 1.2rem 1.5rem;
         }
-        .card-header {
-          flex-direction: column;
+        .hero-content {
+          padding: 0 1.5rem 4rem;
         }
-        .card-day-badge {
-          flex-direction: row;
-          gap: 0.75rem;
-          min-width: unset;
-          padding: 1rem 1.25rem;
-          justify-content: flex-start;
+        .scroll-down {
+          right: 1.5rem;
         }
-        .card-day-label {
-          margin-bottom: 0;
+        .mood-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
         }
-        .budget-total {
+        .mood-card {
+          aspect-ratio: 4/3;
+        }
+        .itinerary-inner {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .itinerary-sidebar {
+          position: static;
+        }
+        .day-img {
+          display: none;
+        }
+        .board-grid {
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto;
+        }
+        .tile {
+          aspect-ratio: 4/3;
+        }
+        .t1,
+        .t2,
+        .t3,
+        .t4,
+        .t5,
+        .t6 {
+          grid-column: auto;
+          grid-row: auto;
+        }
+        .operators-grid {
+          grid-template-columns: 1fr;
+        }
+        footer {
           flex-direction: column;
           align-items: flex-start;
-        }
-        .tip-item {
-          flex-direction: column;
-          gap: 0.5rem;
         }
       }
     </style>
   </head>
   <body>
-    <div class="scroll-bar" id="scrollBar"></div>
+    <div id="prog"></div>
+
+    <nav id="nav">
+      <a class="nav-logo" href="#">Tanzania</a>
+      <a class="nav-cta" href="#enquire">Enquire</a>
+    </nav>
+
     <!-- HERO -->
-    <header class="hero">
-      <div class="hero-particles" id="heroParticles"></div>
-      <div class="hero-eyebrow">Curated Itinerary</div>
-      <h1>Tanzania Safari<br /><em>December 2026</em></h1>
-      <p class="hero-sub">5 nights · 6 days · Landscape &amp; Solitude</p>
-      <div class="hero-badges">
-        <span class="hero-badge">
-          <svg
-            width="13"
-            height="13"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-            <circle cx="12" cy="10" r="3" />
-          </svg>
-          Arusha · Ngorongoro · Serengeti
-        </span>
-        <span class="hero-badge">
-          <svg
-            width="13"
-            height="13"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-            <line x1="16" y1="2" x2="16" y2="6" />
-            <line x1="8" y1="2" x2="8" y2="6" />
-            <line x1="3" y1="10" x2="21" y2="10" />
-          </svg>
-          Dec 1–6, 2026
-        </span>
-        <span class="hero-badge">
-          <svg
-            width="13"
-            height="13"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="12" cy="12" r="10" />
-            <polyline points="12 6 12 12 16 14" />
-          </svg>
-          Green season · Low crowds
-        </span>
+    <section class="hero">
+      <div class="hero-img" id="heroImg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">Early December · Tanzania</div>
+        <h1>A quieter<br /><em>Tanzania.</em></h1>
+        <p class="hero-sub">
+          A boutique safari built around landscape, atmosphere, and unhurried
+          time — not animal counts.
+        </p>
+        <div class="hero-meta">
+          <span><strong>5 nights</strong> &nbsp;/&nbsp; 6 days</span>
+          <span><strong>Dec 1–6</strong> &nbsp;2026</span>
+          <span><strong>Green season</strong> &nbsp;·&nbsp; Low crowds</span>
+        </div>
       </div>
-      <div class="hero-scroll-hint">
+      <div class="scroll-down">
         <svg
-          width="16"
-          height="16"
+          width="18"
+          height="18"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
+          stroke-width="1.5"
           stroke-linecap="round"
           stroke-linejoin="round"
         >
@@ -798,755 +770,347 @@
         </svg>
         Scroll
       </div>
-    </header>
+    </section>
 
-    <div class="container">
-      <!-- ITINERARY -->
-      <div class="section-heading">
-        <h2 class="reveal">The Route</h2>
-        <div class="section-heading-line"></div>
-      </div>
-
-      <div class="itinerary">
-        <!-- Day 1 -->
-        <div class="day-card reveal">
-          <div class="card-header">
-            <div class="card-day-badge pulse">
-              <div class="card-day-label">Day</div>
-              <div class="card-day-num">1</div>
-            </div>
-            <div class="card-header-info">
-              <div class="card-camp-name">WADEMAC Arusha Inn</div>
-              <div class="card-meta">
-                <span class="meta-pill">
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                    <polyline points="9 22 9 12 15 12 15 22" />
-                  </svg>
-                  1 night
-                </span>
-                <span class="meta-pill">
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                  Arusha (outskirts)
-                </span>
-                <span class="meta-pill price">
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <line x1="12" y1="1" x2="12" y2="23" />
-                    <path
-                      d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
-                    />
-                  </svg>
-                  $80–130
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <p class="card-lead">
-              <strong>Arrival &amp; acclimatization.</strong> Fly into
-              Kilimanjaro International Airport (KIA). 1.5-hour drive to Arusha
-              — avoid the town center. WADEMAC is a quiet, boutique inn on the
-              outskirts with Mt. Meru views, excellent staff, and a homey
-              atmosphere. Light dinner, early rest.
-            </p>
-            <ul class="highlights-list">
-              <li>Small, authentic, warm hospitality</li>
-              <li>Quiet location away from Arusha hustle</li>
-              <li>Perfect buffer night before heading into the landscape</li>
-            </ul>
-            <div class="card-actions">
-              <a
-                class="action-btn action-btn-primary"
-                href="http://wademacarushainn.com/"
-                target="_blank"
-              >
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path
-                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                  />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
-                Website
-              </a>
-              <a
-                class="action-btn action-btn-secondary"
-                href="https://maps.google.com/?cid=4142082176509760279"
-                target="_blank"
-              >
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-                Google Maps
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-connector"></div>
-        <!-- Day 2 -->
-        <div class="day-card reveal">
-          <div class="card-header">
-            <div class="card-day-badge">
-              <div class="card-day-label">Day</div>
-              <div class="card-day-num">2</div>
-            </div>
-            <div class="card-header-info">
-              <div class="card-camp-name">
-                Ngorongoro Lodge — Melia Collection
-              </div>
-              <div class="card-meta">
-                <span class="meta-pill">
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                    <polyline points="9 22 9 12 15 12 15 22" />
-                  </svg>
-                  1 night
-                </span>
-                <span class="meta-pill">
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                  Crater rim
-                </span>
-                <span class="meta-pill price">
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <line x1="12" y1="1" x2="12" y2="23" />
-                    <path
-                      d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
-                    />
-                  </svg>
-                  $350–450
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <p class="card-lead">
-              <strong>Crater rim experience — smart timing.</strong> 3-hour
-              drive from Arusha. Stunning panoramic views of the Crater from
-              your room. Excellent management, outstanding chef.
-              <strong>Descend into the Crater early (6:30–7:30 AM)</strong> to
-              beat the 9:00 AM crowds. Spend 3–4 hours on the floor, then depart
-              by early afternoon for prime light and no congestion.
-            </p>
-            <ul class="highlights-list">
-              <li>Direct access from lodge property — skip main gate queues</li>
-              <li>Breakfast with a view of the world's largest caldera</li>
-              <li>
-                Strategic timing means you own the Crater, not the reverse
-              </li>
-            </ul>
-            <div class="card-actions">
-              <a
-                class="action-btn action-btn-primary"
-                href="https://www.melia.com/en/hotels/tanzania/ngorongoro-conservation-area/ngorongoro-lodge-melia-collection"
-                target="_blank"
-              >
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path
-                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                  />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
-                Website
-              </a>
-              <a
-                class="action-btn action-btn-secondary"
-                href="https://maps.google.com/?cid=2501161797835531435"
-                target="_blank"
-              >
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-                Google Maps
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-connector"></div>
-        <!-- Day 3 -->
-        <div class="day-card reveal">
-          <div class="card-header">
-            <div class="card-day-badge">
-              <div class="card-day-label">Day</div>
-              <div class="card-day-num">3</div>
-            </div>
-            <div class="card-header-info">
-              <div class="card-camp-name">Gnu Ndutu Camp</div>
-              <div class="card-meta">
-                <span class="meta-pill">
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                    <polyline points="9 22 9 12 15 12 15 22" />
-                  </svg>
-                  1 night
-                </span>
-                <span class="meta-pill">
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                  Ndutu (conservation area)
-                </span>
-                <span class="meta-pill price">
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <line x1="12" y1="1" x2="12" y2="23" />
-                    <path
-                      d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
-                    />
-                  </svg>
-                  $400–500 all-inclusive
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <p class="card-lead">
-              <strong>Southern Serengeti green-season landscape.</strong> Late
-              morning transfer (~2.5 hrs) from Ngorongoro. Small camp (10
-              tents), immaculate, staff consistently rated as extraordinary.
-              Located in the conservation area — not inside Serengeti Park — so
-              you experience the ecosystem without heavy foot traffic. December
-              = calving season, lush plains, dramatic skies. Almost no tourists.
-            </p>
-            <ul class="highlights-list">
-              <li>Intimate, genuine luxury without pretense</li>
-              <li>Ndutu Lake, herds of zebra and wildebeest</li>
-              <li>Cinematic landscape, peaceful camp atmosphere</li>
-              <li>All-inclusive pricing includes exceptional guiding</li>
-            </ul>
-            <div class="card-actions">
-              <a
-                class="action-btn action-btn-primary"
-                href="http://www.gnucamp.com/"
-                target="_blank"
-              >
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path
-                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                  />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
-                Website
-              </a>
-              <a
-                class="action-btn action-btn-secondary"
-                href="https://maps.google.com/?cid=5565571293152199984"
-                target="_blank"
-              >
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-                Google Maps
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-connector"></div>
-        <!-- Day 4–5 -->
-        <div class="day-card reveal">
-          <div class="card-header">
-            <div class="card-day-badge">
-              <div class="card-day-label">Days</div>
-              <div class="card-day-num">4–5</div>
-            </div>
-            <div class="card-header-info">
-              <div class="card-camp-name">Osero Serengeti Tented Camp</div>
-              <div class="card-meta">
-                <span class="meta-pill">
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                    <polyline points="9 22 9 12 15 12 15 22" />
-                  </svg>
-                  2 nights
-                </span>
-                <span class="meta-pill">
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                  Eastern Serengeti (Seronera)
-                </span>
-                <span class="meta-pill price">
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <line x1="12" y1="1" x2="12" y2="23" />
-                    <path
-                      d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
-                    />
-                  </svg>
-                  $350–450 / night
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <p class="card-lead">
-              <strong>Remote Serengeti wilderness.</strong> Midday transfer
-              (~2.5 hrs) from Ndutu. Seasonal tented camp in the heart of the
-              Serengeti. Exceptional beds (travelers rave), excellent food, warm
-              staff. December offers lush plains, elephant and lion visitations,
-              and a genuinely remote atmosphere with modern comfort. Two full
-              days let you sink into the landscape without rushing.
-            </p>
-            <ul class="highlights-list">
-              <li>
-                Some of the most comfortable beds in Tanzania — no exaggeration
-              </li>
-              <li>Remote location with animals roaming the property at dawn</li>
-              <li>Two days = full exploration with no transfer fatigue</li>
-              <li>Pre-dawn and sunset game drives in the best light</li>
-            </ul>
-            <div class="card-actions">
-              <a
-                class="action-btn action-btn-primary"
-                href="http://oseroserengeti.com/"
-                target="_blank"
-              >
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path
-                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                  />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
-                Website
-              </a>
-              <a
-                class="action-btn action-btn-secondary"
-                href="https://maps.google.com/?cid=11824657968680110519"
-                target="_blank"
-              >
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-                Google Maps
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-connector"></div>
-        <!-- Day 6 -->
-        <div class="day-card departure reveal">
-          <div class="card-header">
-            <div class="card-day-badge">
-              <div class="card-day-label">Day</div>
-              <div class="card-day-num">6</div>
-            </div>
-            <div class="card-header-info">
-              <div class="card-camp-name">Return to Kilimanjaro</div>
-              <div class="card-meta">
-                <span class="meta-pill">
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                  Seronera → KIA
-                </span>
-                <span class="meta-pill">
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="10" />
-                    <polyline points="12 6 12 12 16 14" />
-                  </svg>
-                  3.5–4 hrs drive
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <p class="card-lead">
-              Pre-dawn game drive from Osero (Seronera area), then depart for
-              KIA around midday. Scenic landscapes on the way out — acacia
-              woodland, river valleys. Evening departure flight home.
-            </p>
-          </div>
-        </div>
-      </div>
-      <!-- /itinerary -->
-
-      <!-- WHY DECEMBER -->
-      <div class="section-heading reveal">
-        <h2>Why early December?</h2>
-        <div class="section-heading-line"></div>
-      </div>
-      <div class="faq-grid">
-        <div class="faq-item reveal">
-          <div class="faq-q">Green-season landscape</div>
-          <div class="faq-a">
-            Short rains (Nov–Dec) create lush plains, dramatic skies, and
-            incredible light for photography. You're visiting during the most
-            cinematic time of year.
-          </div>
-        </div>
-        <div class="faq-item reveal">
-          <div class="faq-q">Dramatically fewer crowds</div>
-          <div class="faq-a">
-            Schools are still in session (holidays start late Dec). Tourist
-            numbers at Ngorongoro Crater and camps are significantly lower.
-            You'll have guides almost to yourself.
-          </div>
-        </div>
-        <div class="faq-item reveal">
-          <div class="faq-q">Calving season at Ndutu</div>
-          <div class="faq-a">
-            Wildebeest and zebra are giving birth, creating calm, concentrated
-            wildlife viewing. No chaotic river crossings — just mothers, calves,
-            and predators in green grass. Serene and authentic.
-          </div>
-        </div>
-        <div class="faq-item reveal">
-          <div class="faq-q">Perfect for your travel style</div>
-          <div class="faq-a">
-            You get exactly what you want: landscape + solitude + excellent
-            guiding, without the Big Five circus.
-          </div>
-        </div>
-      </div>
-
-      <!-- BUDGET -->
-      <div class="section-heading reveal">
-        <h2>Budget per person</h2>
-        <div class="section-heading-line"></div>
-      </div>
-      <div class="budget-grid">
-        <div class="budget-card reveal">
-          <div class="budget-label">International flights</div>
-          <div class="budget-value">$1,000–1,800</div>
-        </div>
-        <div class="budget-card">
-          <div class="budget-label reveal">Camps &amp; lodging</div>
-          <div class="budget-value">$1,200–1,600</div>
-        </div>
-        <div class="budget-card">
-          <div class="budget-label">Park fees &amp; guides</div>
-          <div class="budget-value">$200–300</div>
-        </div>
-        <div class="budget-card">
-          <div class="budget-label">Transfers &amp; transport</div>
-          <div class="budget-value">$400–600</div>
-        </div>
-      </div>
-      <div class="budget-total">
-        <div>
-          <div class="budget-total-label">Total per person</div>
-          <div class="budget-total-value">$3,200–4,500</div>
-        </div>
-        <div>
-          <div class="budget-total-label">For two people</div>
-          <div class="budget-total-value">$6,500–9,000</div>
-          <div class="budget-total-sub">Estimated all-in</div>
-        </div>
-      </div>
-
-      <!-- BOOKING TIPS -->
-      <div class="section-heading reveal">
-        <h2>Booking tips</h2>
-        <div class="section-heading-line"></div>
-      </div>
-      <div class="tips-list">
-        <div class="tip-item">
-          <div class="tip-number">1</div>
-          <div class="tip-content">
-            <strong>Book directly or via trusted operators</strong>
-            <span
-              >Asilia Africa, Nomad Tanzania, or Elewana. December discounts
-              often available for shoulder season.</span
-            >
-          </div>
-        </div>
-        <div class="tip-item">
-          <div class="tip-number">2</div>
-          <div class="tip-content">
-            <strong>Request a landscape-focused guide</strong>
-            <span
-              >When booking, ask camps to assign guides fluent in natural
-              history and scenery, not just animal spotting.</span
-            >
-          </div>
-        </div>
-        <div class="tip-item">
-          <div class="tip-number">3</div>
-          <div class="tip-content">
-            <strong>Confirm Crater descent timing</strong>
-            <span
-              >Request the 6:30–7:30 AM slot to avoid crowds and capture best
-              light.</span
-            >
-          </div>
-        </div>
-        <div class="tip-item">
-          <div class="tip-number">4</div>
-          <div class="tip-content">
-            <strong>Ask about road conditions</strong>
-            <span
-              >Post-rain roads can be muddy, which actually keeps tourists away
-              — a feature, not a bug.</span
-            >
-          </div>
-        </div>
-        <div class="tip-item">
-          <div class="tip-number">5</div>
-          <div class="tip-content">
-            <strong>Internal flights are optional</strong>
-            <span
-              >Arusha → Seronera airstrip is flyable but adds cost. Driving
-              transfers work well and build anticipation.</span
-            >
-          </div>
-        </div>
-      </div>
-
-      <!-- TARANGIRE FAQ -->
-      <div class="section-heading reveal">
-        <h2>Should I include Tarangire?</h2>
-        <div class="section-heading-line"></div>
-      </div>
-      <div class="faq-grid">
-        <div class="faq-item">
-          <div class="faq-q">Short answer: No.</div>
-          <div class="faq-a">
-            Tarangire is stunning but shines June–October when animals
-            concentrate at the river. December = water spreads, wildlife
-            disperses. Adding it would cut into your 5-night window and pull you
-            away from your core route (Ndutu + Eastern Serengeti), which is
-            designed exactly for what you want: landscape, solitude, and
-            excellent guiding. Better to spend a second night at Osero and
-            deepen that experience.
-          </div>
-        </div>
-      </div>
-
-      <!-- CALLOUT -->
-      <div class="callout reveal">
-        <p>
-          <strong>Bottom line:</strong> Your instincts are excellent. Early
-          December in Tanzania is deeply underrated for travelers who want
-          landscape and calm over animal density. The camps here prioritize
-          atmosphere and guiding over thread count. This itinerary delivers
-          exactly what you've asked for — and you'll have the Serengeti largely
-          to yourself.
-        </p>
-      </div>
+    <!-- POSITIONING -->
+    <div class="positioning">
+      <blockquote class="r">
+        "A quieter Tanzania safari built around landscape, atmosphere, and
+        time."
+      </blockquote>
+      <cite class="r2">Early December · Green season · Boutique camps</cite>
     </div>
-    <!-- /container -->
 
-    <footer class="site-footer">
-      Tanzania Safari · December 2026 · For personal use
+    <!-- MOOD CARDS -->
+    <section class="mood-section">
+      <div class="section-label r">Three landscapes</div>
+      <div class="section-title r2">Where you'll spend your time</div>
+      <div class="mood-grid">
+        <div class="mood-card r">
+          <img
+            src="https://images.unsplash.com/photo-1504432842672-1a79f78e4084?w=1200&q=80"
+            alt="Ngorongoro Crater rim"
+          />
+          <div class="mood-card-overlay"></div>
+          <div class="mood-card-text">
+            <div class="mood-card-tag">Night 2</div>
+            <div class="mood-card-title">Crater Rim</div>
+            <div class="mood-card-desc">
+              Mist-shrouded highlands, the world's largest intact caldera below.
+              Breakfast before the tour buses arrive.
+            </div>
+          </div>
+        </div>
+        <div class="mood-card r2">
+          <img
+            src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1200&q=80"
+            alt="Green Serengeti plains"
+          />
+          <div class="mood-card-overlay"></div>
+          <div class="mood-card-text">
+            <div class="mood-card-tag">Nights 3–5</div>
+            <div class="mood-card-title">Green Plains</div>
+            <div class="mood-card-desc">
+              Lush Ndutu and the Eastern Serengeti in December — calving season,
+              open skies, almost no other vehicles.
+            </div>
+          </div>
+        </div>
+        <div class="mood-card r3">
+          <img
+            src="https://images.unsplash.com/photo-1535941339077-2dd1c7963098?w=1200&q=80"
+            alt="Safari camp life"
+          />
+          <div class="mood-card-overlay"></div>
+          <div class="mood-card-text">
+            <div class="mood-card-tag">Every evening</div>
+            <div class="mood-card-title">Camp Life</div>
+            <div class="mood-card-desc">
+              Canvas, lantern light, the sound of wind across the plains. Small
+              camps where the staff outnumber the guests.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ITINERARY -->
+    <section class="itinerary-section">
+      <div class="itinerary-inner">
+        <div class="itinerary-sidebar r">
+          <div class="section-label">The route</div>
+          <div class="section-title">
+            Seven nights,<br /><em>three landscapes.</em>
+          </div>
+          <p>
+            This is not a whistle-stop tour. Each location is chosen for
+            atmosphere and access, with enough time to actually settle in.
+          </p>
+        </div>
+        <div class="day-list">
+          <div class="day-item r">
+            <div class="day-num">1</div>
+            <div class="day-body">
+              <div class="day-location">Arusha</div>
+              <div class="day-title">Arrival &amp; first light</div>
+              <div class="day-desc">
+                Fly into Kilimanjaro International Airport. Transfer to a quiet
+                boutique inn on the Arusha outskirts — away from the town, with
+                views of Mt. Meru. A gentle evening before the landscape begins.
+              </div>
+            </div>
+            <div class="day-img">
+              <img
+                src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1200&q=80"
+                alt="Arusha"
+              />
+            </div>
+          </div>
+          <div class="day-item r">
+            <div class="day-num">2</div>
+            <div class="day-body">
+              <div class="day-location">Ngorongoro</div>
+              <div class="day-title">The highland drive &amp; crater rim</div>
+              <div class="day-desc">
+                Three hours through highland forest. Arrive at the crater rim by
+                mid-afternoon. Descend into the caldera at first light — 6:30 AM
+                — before the convoys arrive. Spend the morning on the crater
+                floor, then ascend for lunch and a quiet afternoon.
+              </div>
+            </div>
+            <div class="day-img">
+              <img
+                src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1200&q=80"
+                alt="Ngorongoro"
+              />
+            </div>
+          </div>
+          <div class="day-item r">
+            <div class="day-num">3</div>
+            <div class="day-body">
+              <div class="day-location">Ndutu / Southern Serengeti</div>
+              <div class="day-title">Into the green plains</div>
+              <div class="day-desc">
+                Transfer to Ndutu — a small, ten-tent camp on the edge of the
+                conservation area. December is calving season: the plains are
+                flush, the light is golden, and there are almost no other
+                vehicles. One night here is never enough.
+              </div>
+            </div>
+            <div class="day-img">
+              <img
+                src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=1200&q=80"
+                alt="Ndutu"
+              />
+            </div>
+          </div>
+          <div class="day-item r">
+            <div class="day-num">4–5</div>
+            <div class="day-body">
+              <div class="day-location">Eastern Serengeti</div>
+              <div class="day-title">Two full days in the Serengeti</div>
+              <div class="day-desc">
+                Move deeper into the Serengeti. Two nights at a seasonal tented
+                camp near Seronera. Pre-dawn drives, long breakfasts, afternoon
+                rest. December brings elephant herds to the woodlands and lion
+                cubs to the kopjes. No rush, no checklist.
+              </div>
+            </div>
+            <div class="day-img">
+              <img
+                src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=1200&q=80"
+                alt="Serengeti"
+              />
+            </div>
+          </div>
+          <div class="day-item r">
+            <div class="day-num">6</div>
+            <div class="day-body">
+              <div class="day-location">Seronera → Kilimanjaro</div>
+              <div class="day-title">One last drive out</div>
+              <div class="day-desc">
+                A pre-dawn game drive before the midday transfer to KIA —
+                through acacia woodland and the long grass of the Seronera
+                valley. Evening flight home, or onward.
+              </div>
+            </div>
+            <div class="day-img">
+              <img
+                src="https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=1200&q=80"
+                alt="Departure"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOODBOARD -->
+    <section class="moodboard">
+      <div class="section-label r">Atmosphere</div>
+      <div class="section-title r2">What it looks like</div>
+      <p class="section-body r3">
+        Editorial images from Tanzania's green season — the light, the
+        landscape, the stillness.
+      </p>
+      <div class="board-grid">
+        <div class="tile t1 r">
+          <img
+            src="https://images.unsplash.com/photo-1504432842672-1a79f78e4084?w=1200&q=80"
+            alt="Tanzania landscape"
+          />
+          <div class="tile-caption">Southern Serengeti</div>
+        </div>
+        <div class="tile t2 r2">
+          <img
+            src="https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=1200&q=80"
+            alt="Elephant Tanzania"
+          />
+          <div class="tile-caption">Elephant, Ndutu</div>
+        </div>
+        <div class="tile t3 r3">
+          <img
+            src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=1200&q=80"
+            alt="Giraffe landscape"
+          />
+          <div class="tile-caption">Giraffe at dusk</div>
+        </div>
+        <div class="tile t4 r">
+          <img
+            src="https://images.unsplash.com/photo-1535941339077-2dd1c7963098?w=1200&q=80"
+            alt="Safari camp"
+          />
+          <div class="tile-caption">Camp life</div>
+        </div>
+        <div class="tile t5 r2">
+          <img
+            src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1200&q=80"
+            alt="Green Serengeti"
+          />
+          <div class="tile-caption">Green season plains</div>
+        </div>
+        <div class="tile t6 r3">
+          <img
+            src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1200&q=80"
+            alt="Ngorongoro crater"
+          />
+          <div class="tile-caption">Ngorongoro Crater</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPERATORS -->
+    <section class="operators-section">
+      <div class="section-label r">Trusted operators</div>
+      <div class="section-title r2">Who to book with</div>
+      <p class="section-body r3">
+        These three operators understand what this kind of safari is about. None
+        of them are chasing volume.
+      </p>
+      <div class="operators-grid">
+        <div class="op-card r">
+          <div class="op-img">
+            <img
+              src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1200&q=80"
+              alt="Wayo Africa"
+            />
+          </div>
+          <div class="op-body">
+            <div class="op-tag">Boutique operator</div>
+            <div class="op-name">Wayo Africa</div>
+            <div class="op-desc">
+              Tanzania specialists with deep field knowledge and walking safari
+              expertise. Small groups, thoughtful guiding, genuine naturalists
+              on staff.
+            </div>
+          </div>
+        </div>
+        <div class="op-card r2">
+          <div class="op-img">
+            <img
+              src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=1200&q=80"
+              alt="Asilia Africa"
+            />
+          </div>
+          <div class="op-body">
+            <div class="op-tag">Conservation-led</div>
+            <div class="op-name">Asilia Africa</div>
+            <div class="op-desc">
+              Owner of Namiri Plains and other landmark camps. Rigorous
+              conservation focus, exceptional food and guiding. December rates
+              often discounted.
+            </div>
+          </div>
+        </div>
+        <div class="op-card r3">
+          <div class="op-img">
+            <img
+              src="https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=1200&q=80"
+              alt="Nomad Tanzania"
+            />
+          </div>
+          <div class="op-body">
+            <div class="op-tag">Pioneer operator</div>
+            <div class="op-name">Nomad Tanzania</div>
+            <div class="op-desc">
+              One of the original boutique operators. Their mobile and seasonal
+              camps are quietly exceptional. The guiding culture here is
+              old-school in the best sense.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="enquire">
+      <div class="cta-inner">
+        <div class="section-label r">Get started</div>
+        <div class="section-title r2">
+          Request a custom<br /><em>early-December quote.</em>
+        </div>
+        <p class="section-body r3">
+          Tell us your dates, travel style, and budget. We'll put together a
+          considered itinerary — no generic packages, no upselling.
+        </p>
+        <a
+          class="cta-btn r"
+          href="mailto:frank@example.com?subject=Tanzania%20Safari%20Enquiry%20%E2%80%94%20December%202026"
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          Begin your enquiry
+        </a>
+        <span class="cta-note r2"
+          >Typically 24-hour response · No obligation</span
+        >
+      </div>
+    </section>
+
+    <footer>
+      <span>Tanzania Safari &nbsp;·&nbsp; December 2026</span>
+      <a href="itinerary.html">View full itinerary &rarr;</a>
     </footer>
+
     <script>
-      // ── Scroll progress bar ──
-      const scrollBar = document.getElementById("scrollBar");
+      // Progress bar
+      const prog = document.getElementById("prog");
+      const nav = document.getElementById("nav");
+      const heroImg = document.getElementById("heroImg");
+
       window.addEventListener(
         "scroll",
         () => {
@@ -1554,66 +1118,34 @@
             (window.scrollY /
               (document.body.scrollHeight - window.innerHeight)) *
             100;
-          scrollBar.style.width = pct + "%";
-        },
-        { passive: true },
-      );
+          prog.style.width = pct + "%";
 
-      // ── Hero particles ──
-      const container = document.getElementById("heroParticles");
-      const COUNT = 28;
-      for (let i = 0; i < COUNT; i++) {
-        const p = document.createElement("div");
-        p.className = "particle";
-        const size = 2 + Math.random() * 4;
-        p.style.cssText = [
-          `width:${size}px`,
-          `height:${size}px`,
-          `left:${Math.random() * 100}%`,
-          `animation-duration:${8 + Math.random() * 14}s`,
-          `animation-delay:${-Math.random() * 20}s`,
-          `opacity:${0.3 + Math.random() * 0.5}`,
-        ].join(";");
-        container.appendChild(p);
-      }
+          // Nav
+          if (window.scrollY > 60) nav.classList.add("scrolled");
+          else nav.classList.remove("scrolled");
 
-      // ── Scroll reveal ──
-      const reveals = document.querySelectorAll(".reveal");
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry, i) => {
-            if (entry.isIntersecting) {
-              // stagger siblings in the same parent
-              const siblings = [
-                ...entry.target.parentElement.querySelectorAll(
-                  ".reveal:not(.visible)",
-                ),
-              ];
-              const idx = siblings.indexOf(entry.target);
-              setTimeout(() => {
-                entry.target.classList.add("visible");
-              }, idx * 80);
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.12 },
-      );
-      reveals.forEach((el) => observer.observe(el));
-
-      // ── Parallax hero on scroll ──
-      const hero = document.querySelector(".hero");
-      window.addEventListener(
-        "scroll",
-        () => {
-          const y = window.scrollY;
-          if (y < hero.offsetHeight) {
-            hero.style.backgroundPositionY = `${y * 0.4}px`;
-            container.style.transform = `translateY(${y * 0.25}px)`;
+          // Hero parallax
+          if (window.scrollY < window.innerHeight) {
+            heroImg.style.transform = `translateY(${window.scrollY * 0.35}px)`;
           }
         },
         { passive: true },
       );
+
+      // Scroll reveal
+      const items = document.querySelectorAll(".r,.r2,.r3");
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              obs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      items.forEach((el) => obs.observe(el));
     </script>
   </body>
 </html>
