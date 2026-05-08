@@ -525,6 +525,68 @@
         border-top: 1px solid var(--border);
       }
 
+      /* ── NAV ── */
+      .site-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 900;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.1rem 2rem;
+        transition: background 0.4s;
+      }
+      .site-nav.scrolled {
+        background: rgba(26, 46, 31, 0.88);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+      }
+      .nav-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.65);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-back:hover {
+        color: var(--white);
+      }
+      .nav-back svg {
+        opacity: 0.6;
+      }
+      .nav-title {
+        font-family: "Playfair Display", serif;
+        font-size: 0.95rem;
+        font-weight: 400;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .nav-quote-btn {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        padding-bottom: 1px;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+      .nav-quote-btn:hover {
+        color: var(--white);
+        border-color: var(--white);
+      }
+
       /* ── PROGRESS BAR ── */
       .scroll-bar {
         position: fixed;
@@ -782,6 +844,29 @@
     </style>
   </head>
   <body>
+    <nav class="site-nav" id="siteNav">
+      <a class="nav-back" href="index.html">
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        Overview
+      </a>
+      <span class="nav-title">Tanzania Safari</span>
+      <a
+        class="nav-quote-btn"
+        href="mailto:finger.print@me.com?subject=Tanzania%20Safari%20Quote%20%E2%80%94%20December%202026&body=Hi%2C%0A%0AI%27ve%20reviewed%20your%20itinerary%20at%20https%3A%2F%2Falwaysnoticing.github.io%2Fsafari%2Fitinerary.html%0A%0AHere%20is%20my%20quote%20for%202%20travellers%2C%20Dec%201%E2%80%936%202026%3A%0A%0ATotal%20price%3A%20%24%0AIncludes%3A%0A%0AOperator%20name%3A%0AWebsite%3A%0AContact%3A"
+        >Send quote</a
+      >
+    </nav>
     <div class="scroll-bar" id="scrollBar"></div>
     <div class="quote-bar" id="quoteBar">
       <div class="quote-bar-text">
@@ -1642,6 +1727,7 @@
       // ── Scroll progress bar + quote bar ──
       const scrollBar = document.getElementById("scrollBar");
       const quoteBar = document.getElementById("quoteBar");
+      const siteNav = document.getElementById("siteNav");
       window.addEventListener(
         "scroll",
         () => {
@@ -1652,6 +1738,8 @@
           scrollBar.style.width = pct + "%";
           if (window.scrollY > 400) quoteBar.classList.add("show");
           else quoteBar.classList.remove("show");
+          if (window.scrollY > 60) siteNav.classList.add("scrolled");
+          else siteNav.classList.remove("scrolled");
         },
         { passive: true },
       );
