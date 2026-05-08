@@ -726,14 +726,94 @@
           gap: 0.5rem;
         }
       }
+      /* STICKY QUOTE BAR */
+      .quote-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 800;
+        background: var(--green-deep);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.9rem 2rem;
+        gap: 1rem;
+        flex-wrap: wrap;
+        transform: translateY(100%);
+        transition: transform 0.4s ease;
+        box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.18);
+      }
+      .quote-bar.show {
+        transform: translateY(0);
+      }
+      .quote-bar-text {
+        font-size: 12.5px;
+        color: rgba(255, 255, 255, 0.65);
+        font-weight: 300;
+      }
+      .quote-bar-text strong {
+        color: var(--white);
+        font-weight: 500;
+      }
+      .quote-bar-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: "Sora", sans-serif;
+        font-size: 11.5px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--green-deep);
+        background: #c9a84c;
+        border-radius: 100px;
+        padding: 0.65rem 1.5rem;
+        text-decoration: none;
+        white-space: nowrap;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .quote-bar-btn:hover {
+        background: #e0be6a;
+        transform: translateY(-1px);
+      }
     </style>
   </head>
   <body>
     <div class="scroll-bar" id="scrollBar"></div>
+    <div class="quote-bar" id="quoteBar">
+      <div class="quote-bar-text">
+        <strong>2 travellers · Dec 1–6 2026 · 5 nights</strong> &nbsp;—&nbsp;
+        This itinerary is open for quotes from boutique operators.
+      </div>
+      <a
+        class="quote-bar-btn"
+        href="mailto:finger.print@me.com?subject=Tanzania%20Safari%20Quote%20%E2%80%94%20December%202026&body=Hi%2C%0A%0AI%27ve%20reviewed%20your%20itinerary%20at%20https%3A%2F%2Falwaysnoticing.github.io%2Fsafari%2Fitinerary.html%0A%0AHere%20is%20my%20quote%20for%202%20travellers%2C%20Dec%201%E2%80%936%202026%3A%0A%0ATotal%20price%3A%20%24%0AIncludes%3A%0A%0AOperator%20name%3A%0AWebsite%3A%0AContact%3A"
+      >
+        <svg
+          width="13"
+          height="13"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+          />
+          <polyline points="22,6 12,13 2,6" />
+        </svg>
+        Send your quote
+      </a>
+    </div>
     <!-- HERO -->
     <header class="hero">
       <div class="hero-particles" id="heroParticles"></div>
-      <div class="hero-eyebrow">Curated Itinerary</div>
+      <div class="hero-eyebrow">Full itinerary · Open for operator quotes</div>
       <h1>Tanzania Safari<br /><em>December 2026</em></h1>
       <p class="hero-sub">5 nights · 6 days · Landscape &amp; Solitude</p>
       <div class="hero-badges">
@@ -1559,8 +1639,9 @@
       <a class="footer-back-link" href="index.html">&larr; Back to overview</a>
     </footer>
     <script>
-      // ── Scroll progress bar ──
+      // ── Scroll progress bar + quote bar ──
       const scrollBar = document.getElementById("scrollBar");
+      const quoteBar = document.getElementById("quoteBar");
       window.addEventListener(
         "scroll",
         () => {
@@ -1569,6 +1650,8 @@
               (document.body.scrollHeight - window.innerHeight)) *
             100;
           scrollBar.style.width = pct + "%";
+          if (window.scrollY > 400) quoteBar.classList.add("show");
+          else quoteBar.classList.remove("show");
         },
         { passive: true },
       );

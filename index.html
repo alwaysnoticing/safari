@@ -602,6 +602,17 @@
         background: var(--white);
         transform: translateY(-2px);
       }
+      .cta-btn-ghost {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .cta-btns {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
       .cta-note {
         display: block;
         margin-top: 1.5rem;
@@ -743,16 +754,16 @@
       <div class="hero-img" id="heroImg"></div>
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <div class="hero-eyebrow">Early December · Tanzania</div>
-        <h1>A quieter<br /><em>Tanzania.</em></h1>
+        <div class="hero-eyebrow">Open for quotes · Closing soon</div>
+        <h1>This is the trip.<br /><em>Make me an offer.</em></h1>
         <p class="hero-sub">
-          A boutique safari built around landscape, atmosphere, and unhurried
-          time — not animal counts.
+          I've designed my ideal Tanzania safari. I'm now inviting boutique
+          operators to quote. Best offer wins the booking.
         </p>
         <div class="hero-meta">
           <span><strong>5 nights</strong> &nbsp;/&nbsp; 6 days</span>
           <span><strong>Dec 1–6</strong> &nbsp;2026</span>
-          <span><strong>Green season</strong> &nbsp;·&nbsp; Low crowds</span>
+          <span><strong>2 travellers</strong> &nbsp;·&nbsp; Green season</span>
         </div>
       </div>
       <div class="scroll-down">
@@ -775,16 +786,20 @@
     <!-- POSITIONING -->
     <div class="positioning">
       <blockquote class="r">
-        "A quieter Tanzania safari built around landscape, atmosphere, and
-        time."
+        "I know exactly what I want. I've built the itinerary. Now I want the
+        right operator to make it happen — at the right price."
       </blockquote>
-      <cite class="r2">Early December · Green season · Boutique camps</cite>
+      <cite class="r2"
+        >Open to quotes from boutique operators · Dec 2026 · 2 travellers</cite
+      >
     </div>
 
     <!-- MOOD CARDS -->
     <section class="mood-section">
-      <div class="section-label r">Three landscapes</div>
-      <div class="section-title r2">Where you'll spend your time</div>
+      <div class="section-label r">The brief</div>
+      <div class="section-title r2">
+        Three landscapes,<br /><em>five nights.</em>
+      </div>
       <div class="mood-grid">
         <div class="mood-card r">
           <img
@@ -1001,11 +1016,13 @@
 
     <!-- OPERATORS -->
     <section class="operators-section">
-      <div class="section-label r">Trusted operators</div>
-      <div class="section-title r2">Who to book with</div>
+      <div class="section-label r">Shortlisted operators</div>
+      <div class="section-title r2">
+        Are you one of these —<br /><em>or better?</em>
+      </div>
       <p class="section-body r3">
-        These three operators understand what this kind of safari is about. None
-        of them are chasing volume.
+        These are the operators I'm already aware of. If you can match or beat
+        them on quality, experience, and price — I want to hear from you.
       </p>
       <div class="operators-grid">
         <div class="op-card r">
@@ -1065,37 +1082,59 @@
     <!-- CTA -->
     <section class="cta-section" id="enquire">
       <div class="cta-inner">
-        <div class="section-label r">Get started</div>
+        <div class="section-label r">Submit a quote</div>
         <div class="section-title r2">
-          Request a custom<br /><em>early-December quote.</em>
+          Read the itinerary.<br /><em>Then pitch me.</em>
         </div>
         <p class="section-body r3">
-          Tell us your dates, travel style, and budget. We'll put together a
-          considered itinerary — no generic packages, no upselling.
+          I've published the full route, camps, and target budget. If you can
+          deliver this trip — or something better at the same price — send me
+          your quote. Two travellers, early December 2026.
         </p>
-        <a
-          class="cta-btn r"
-          href="mailto:frank@example.com?subject=Tanzania%20Safari%20Enquiry%20%E2%80%94%20December%202026"
-        >
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+        <div class="cta-btns r">
+          <a class="cta-btn" href="itinerary.html">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+              />
+              <polyline points="14 2 14 8 20 8" />
+            </svg>
+            Read the full itinerary
+          </a>
+          <a
+            class="cta-btn cta-btn-ghost"
+            href="mailto:finger.print@me.com?subject=Tanzania%20Safari%20Quote%20%E2%80%94%20December%202026&body=Hi%2C%0A%0AI%27ve%20reviewed%20your%20itinerary%20at%20https%3A%2F%2Falwaysnoticing.github.io%2Fsafari%2Fitinerary.html%0A%0AHere%20is%20my%20quote%20for%202%20travellers%2C%20Dec%201%E2%80%936%202026%3A%0A%0ATotal%20price%3A%20%24%0AIncludes%3A%0A%0AOperator%20name%3A%0AWebsite%3A%0AContact%3A"
           >
-            <path
-              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-            />
-            <polyline points="22,6 12,13 2,6" />
-          </svg>
-          Begin your enquiry
-        </a>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+            Send your quote
+          </a>
+        </div>
         <span class="cta-note r2"
-          >Typically 24-hour response · No obligation</span
+          >Quotes reviewed on a rolling basis · Booking decision by Oct
+          2026</span
         >
       </div>
     </section>
