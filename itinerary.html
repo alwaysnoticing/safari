@@ -758,13 +758,48 @@
         transition: transform 0.8s ease;
       }
 
-      /* ── RESPONSIVE ── */
-      @media (max-width: 600px) {
+      /* ── RESPONSIVE — tablet ── */
+      @media (max-width: 768px) {
+        .faq-grid {
+          grid-template-columns: 1fr;
+        }
+        .budget-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .budget-total {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1.5rem;
+        }
+        .card-actions {
+          flex-wrap: wrap;
+        }
+        .site-nav {
+          padding: 0.9rem 1.2rem;
+        }
+        .nav-title {
+          display: none;
+        }
+        .quote-bar {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.75rem;
+          padding: 1rem 1.2rem;
+        }
+      }
+
+      /* ── RESPONSIVE — mobile ── */
+      @media (max-width: 480px) {
         .hero {
           padding: 3.5rem 1rem 3rem;
         }
         .container {
           padding: 2.5rem 1rem 4rem;
+        }
+        .hero-badges {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.5rem;
         }
         .card-header {
           flex-direction: column;
@@ -779,13 +814,30 @@
         .card-day-label {
           margin-bottom: 0;
         }
+        .card-meta {
+          flex-wrap: wrap;
+        }
+        .budget-grid {
+          grid-template-columns: 1fr;
+        }
         .budget-total {
           flex-direction: column;
           align-items: flex-start;
         }
+        .budget-total-value {
+          font-size: 1.8rem;
+        }
         .tip-item {
           flex-direction: column;
           gap: 0.5rem;
+        }
+        .action-btn {
+          font-size: 10px;
+          padding: 0.45rem 0.9rem;
+        }
+        .quote-bar-btn {
+          width: 100%;
+          justify-content: center;
         }
       }
       /* STICKY QUOTE BAR */
