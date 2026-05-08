@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tanzania — A Quieter Safari</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:      #1c1f1a;
+  --charcoal: #2e3028;
+  --green:    #2a3d2f;
+  --moss:     #5c7a50;
+  --clay:     #9c6b4a;
+  --sand:     #c8b49a;
+  --ivory:    #f5f0e8;
+  --cream:    #faf7f2;
+  --white:    #ffffff;
+  --text:     #2e3028;
+  --muted:    #7a7a6a;
+  --border:   #e2ddd5;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;width:100%;object-fit:cover}
+
+/* PROGRESS */
+#prog{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--moss),var(--sand));z-index:1000;transition:width .08s linear}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 3rem;transition:background .4s}
+nav.scrolled{background:rgba(28,31,26,.85);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;letter-spacing:3px;text-transform:uppercase;color:var(--white);text-decoration:none}
+.nav-cta{font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:1px;transition:color .2s,border-color .2s}
+.nav-cta:hover{color:var(--white);border-color:var(--white)}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:600px;overflow:hidden;display:flex;align-items:flex-end}
+.hero-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1800&q=80') center/cover no-repeat;will-change:transform}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,28,18,.15) 0%,rgba(20,28,18,.05) 35%,rgba(20,28,18,.6) 72%,rgba(20,28,18,.92) 100%)}
+.hero-content{position:relative;padding:0 3rem 5rem;max-width:800px}
+.hero-eyebrow{font-size:10px;font-weight:500;letter-spacing:3.5px;text-transform:uppercase;color:var(--sand);margin-bottom:1.4rem}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:300;line-height:1.05;color:var(--white);margin-bottom:1.5rem}
+.hero h1 em{font-style:italic;color:#d4c9a8}
+.hero-sub{font-size:15px;font-weight:300;color:rgba(255,255,255,.7);line-height:1.8;max-width:520px;margin-bottom:2.5rem}
+.hero-meta{display:flex;gap:2rem;flex-wrap:wrap}
+.hero-meta span{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.hero-meta span strong{color:rgba(255,255,255,.82);font-weight:500}
+.scroll-down{position:absolute;bottom:2.5rem;right:3rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.3);font-size:9px;letter-spacing:2px;text-transform:uppercase;animation:nudge 2.2s ease-in-out infinite}
+.scroll-down svg{opacity:.35}
+@keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+/* SECTION SHARED */
+section{padding:7rem 3rem}
+.section-label{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--moss);margin-bottom:1.25rem}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4.5vw,3.2rem);font-weight:300;line-height:1.2;color:var(--green);margin-bottom:1.5rem}
+.section-title em{font-style:italic}
+.section-body{font-size:15px;font-weight:300;line-height:1.85;color:var(--muted);max-width:560px}
+
+/* POSITIONING STRIP */
+.positioning{background:var(--green);padding:5.5rem 3rem;text-align:center}
+.positioning blockquote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3.5vw,2.5rem);font-weight:300;font-style:italic;line-height:1.45;color:#d4c9a8;max-width:760px;margin:0 auto 1.5rem}
+.positioning cite{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);font-style:normal}
+
+/* MOOD CARDS */
+.mood-section{background:var(--ivory);padding:7rem 3rem}
+.mood-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
+.mood-card{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:3/4;cursor:default}
+.mood-card img{height:100%;transition:transform .6s ease}
+.mood-card:hover img{transform:scale(1.05)}
+.mood-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,28,18,.85) 0%,rgba(20,28,18,.08) 55%,transparent 100%)}
+.mood-card-text{position:absolute;bottom:0;left:0;right:0;padding:2rem 1.75rem}
+.mood-card-tag{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--sand);margin-bottom:.6rem}
+.mood-card-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--white);line-height:1.2;margin-bottom:.6rem}
+.mood-card-desc{font-size:12.5px;font-weight:300;line-height:1.65;color:rgba(255,255,255,.6)}
+
+/* ITINERARY */
+.itinerary-section{background:var(--cream)}
+.itinerary-inner{display:grid;grid-template-columns:1fr 2fr;gap:5rem;max-width:1100px;margin:3rem auto 0}
+.itinerary-sidebar{position:sticky;top:8rem;height:fit-content}
+.itinerary-sidebar .section-title{font-size:clamp(1.8rem,3vw,2.5rem)}
+.itinerary-sidebar p{font-size:14px;font-weight:300;line-height:1.8;color:var(--muted);margin-top:1rem}
+.day-list{display:flex;flex-direction:column;gap:0}
+.day-item{display:flex;gap:2rem;align-items:flex-start;padding:2.5rem 0;border-bottom:1px solid var(--border)}
+.day-item:first-child{padding-top:0}
+.day-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:var(--border);line-height:1;min-width:64px;flex-shrink:0;transition:color .3s}
+.day-item:hover .day-num{color:var(--moss)}
+.day-body{flex:1}
+.day-location{font-size:10px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--moss);margin-bottom:.4rem}
+.day-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;color:var(--green);margin-bottom:.6rem}
+.day-desc{font-size:13.5px;font-weight:300;line-height:1.8;color:var(--muted)}
+.day-img{width:140px;flex-shrink:0;height:90px;border-radius:10px;overflow:hidden}
+.day-img img{height:100%}
+
+/* MOODBOARD */
+.moodboard{background:var(--charcoal);padding:7rem 3rem}
+.moodboard .section-label{color:var(--sand)}
+.moodboard .section-title{color:rgba(255,255,255,.85)}
+.moodboard .section-body{color:rgba(255,255,255,.4)}
+.board-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:300px 260px;gap:12px;margin-top:3rem}
+.tile{border-radius:12px;overflow:hidden;position:relative}
+.tile img{height:100%;transition:transform .6s ease}
+.tile:hover img{transform:scale(1.05)}
+.tile-caption{position:absolute;bottom:0;left:0;right:0;padding:.75rem 1rem;background:linear-gradient(to top,rgba(0,0,0,.6),transparent);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.t1{grid-column:1/6;grid-row:1}
+.t2{grid-column:6/9;grid-row:1}
+.t3{grid-column:9/13;grid-row:1}
+.t4{grid-column:1/4;grid-row:2}
+.t5{grid-column:4/8;grid-row:2}
+.t6{grid-column:8/13;grid-row:2}
+
+/* OPERATORS */
+.operators-section{background:var(--cream)}
+.operators-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
+.op-card{background:var(--white);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:box-shadow .3s,transform .3s}
+.op-card:hover{box-shadow:0 16px 48px rgba(0,0,0,.08);transform:translateY(-3px)}
+.op-img{height:200px;overflow:hidden}
+.op-img img{height:100%;transition:transform .6s}
+.op-card:hover .op-img img{transform:scale(1.06)}
+.op-body{padding:1.75rem}
+.op-tag{font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--moss);font-weight:500;margin-bottom:.5rem}
+.op-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--green);margin-bottom:.6rem}
+.op-desc{font-size:12.5px;font-weight:300;line-height:1.78;color:var(--muted)}
+
+/* CTA */
+.cta-section{background:var(--green);padding:8rem 3rem;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1400&q=60') center/cover no-repeat;opacity:.12}
+.cta-inner{position:relative}
+.cta-section .section-label{color:var(--sand);display:block;margin-bottom:1.25rem}
+.cta-section .section-title{color:rgba(255,255,255,.92);max-width:680px;margin:0 auto 1.5rem}
+.cta-section .section-body{color:rgba(255,255,255,.45);margin:0 auto 3rem;text-align:center}
+.cta-btn{display:inline-flex;align-items:center;gap:.75rem;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);background:var(--ivory);border:none;border-radius:100px;padding:1rem 2.5rem;text-decoration:none;cursor:pointer;transition:background .2s,transform .2s}
+.cta-btn:hover{background:var(--white);transform:translateY(-2px)}
+.cta-note{display:block;margin-top:1.5rem;font-size:11px;color:rgba(255,255,255,.25);letter-spacing:.5px}
+
+/* FOOTER */
+footer{background:var(--ink);padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+footer span{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.22)}
+footer a{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.32);text-decoration:none;transition:color .2s}
+footer a:hover{color:rgba(255,255,255,.7)}
+
+/* REVEAL */
+.r{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.r.in{opacity:1;transform:translateY(0)}
+.r2{opacity:0;transform:translateY(26px);transition:opacity .7s .12s ease,transform .7s .12s ease}
+.r2.in{opacity:1;transform:translateY(0)}
+.r3{opacity:0;transform:translateY(26px);transition:opacity .7s .24s ease,transform .7s .24s ease}
+.r3.in{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  section{padding:5rem 1.5rem}
+  nav{padding:1.2rem 1.5rem}
+  .hero-content{padding:0 1.5rem 4rem}
+  .scroll-down{right:1.5rem}
+  .mood-grid{grid-template-columns:1fr;gap:1rem}
+  .mood-card{aspect-ratio:4/3}
+  .itinerary-inner{grid-template-columns:1fr;gap:2rem}
+  .itinerary-sidebar{position:static}
+  .day-img{display:none}
+  .board-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .tile{aspect-ratio:4/3}
+  .t1,.t2,.t3,.t4,.t5,.t6{grid-column:auto;grid-row:auto}
+  .operators-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+
+<nav id="nav">
+  <a class="nav-logo" href="#">Tanzania</a>
+  <a class="nav-cta" href="#enquire">Enquire</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img" id="heroImg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Early December · Tanzania</div>
+    <h1>A quieter<br><em>Tanzania.</em></h1>
+    <p class="hero-sub">A boutique safari built around landscape, atmosphere, and unhurried time — not animal counts.</p>
+    <div class="hero-meta">
+      <span><strong>5 nights</strong> &nbsp;/&nbsp; 6 days</span>
+      <span><strong>Dec 1–6</strong> &nbsp;2026</span>
+      <span><strong>Green season</strong> &nbsp;·&nbsp; Low crowds</span>
+    </div>
+  </div>
+  <div class="scroll-down">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    Scroll
+  </div>
+</section>
+
+<!-- POSITIONING -->
+<div class="positioning">
+  <blockquote class="r">"A quieter Tanzania safari built around landscape, atmosphere, and time."</blockquote>
+  <cite class="r2">Early December · Green season · Boutique camps</cite>
+</div>
+
+<!-- MOOD CARDS -->
+<section class="mood-section">
+  <div class="section-label r">Three landscapes</div>
+  <div class="section-title r2">Where you'll spend your time</div>
+  <div class="mood-grid">
+    <div class="mood-card r">
+      <img src="https://images.unsplash.com/photo-1568099091079-9e9b0c43c9a1?w=800&q=80" alt="Ngorongoro Crater rim">
+      <div class="mood-card-overlay"></div>
+      <div class="mood-card-text">
+        <div class="mood-card-tag">Night 2</div>
+        <div class="mood-card-title">Crater Rim</div>
+        <div class="mood-card-desc">Mist-shrouded highlands, the world's largest intact caldera below. Breakfast before the tour buses arrive.</div>
+      </div>
+    </div>
+    <div class="mood-card r2">
+      <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&q=80" alt="Green Serengeti plains">
+      <div class="mood-card-overlay"></div>
+      <div class="mood-card-text">
+        <div class="mood-card-tag">Nights 3–5</div>
+        <div class="mood-card-title">Green Plains</div>
+        <div class="mood-card-desc">Lush Ndutu and the Eastern Serengeti in December — calving season, open skies, almost no other vehicles.</div>
+      </div>
+    </div>
+    <div class="mood-card r3">
+      <img src="https://images.unsplash.com/photo-1504432842672-1a79f78e4084?w=800&q=80" alt="Safari camp life">
+      <div class="mood-card-overlay"></div>
+      <div class="mood-card-text">
+        <div class="mood-card-tag">Every evening</div>
+        <div class="mood-card-title">Camp Life</div>
+        <div class="mood-card-desc">Canvas, lantern light, the sound of wind across the plains. Small camps where the staff outnumber the guests.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ITINERARY -->
+<section class="itinerary-section">
+  <div class="itinerary-inner">
+    <div class="itinerary-sidebar r">
+      <div class="section-label">The route</div>
+      <div class="section-title">Seven nights,<br><em>three landscapes.</em></div>
+      <p>This is not a whistle-stop tour. Each location is chosen for atmosphere and access, with enough time to actually settle in.</p>
+    </div>
+    <div class="day-list">
+      <div class="day-item r">
+        <div class="day-num">1</div>
+        <div class="day-body">
+          <div class="day-location">Arusha</div>
+          <div class="day-title">Arrival &amp; first light</div>
+          <div class="day-desc">Fly into Kilimanjaro International Airport. Transfer to a quiet boutique inn on the Arusha outskirts — away from the town, with views of Mt. Meru. A gentle evening before the landscape begins.</div>
+        </div>
+        <div class="day-img">
+          <img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=300&q=75" alt="Arusha">
+        </div>
+      </div>
+      <div class="day-item r">
+        <div class="day-num">2</div>
+        <div class="day-body">
+          <div class="day-location">Ngorongoro</div>
+          <div class="day-title">The highland drive &amp; crater rim</div>
+          <div class="day-desc">Three hours through highland forest. Arrive at the crater rim by mid-afternoon. Descend into the caldera at first light — 6:30 AM — before the convoys arrive. Spend the morning on the crater floor, then ascend for lunch and a quiet afternoon.</div>
+        </div>
+        <div class="day-img">
+          <img src="https://images.unsplash.com/photo-1568099091079-9e9b0c43c9a1?w=300&q=75" alt="Ngorongoro">
+        </div>
+      </div>
+      <div class="day-item r">
+        <div class="day-num">3</div>
+        <div class="day-body">
+          <div class="day-location">Ndutu / Southern Serengeti</div>
+          <div class="day-title">Into the green plains</div>
+          <div class="day-desc">Transfer to Ndutu — a small, ten-tent camp on the edge of the conservation area. December is calving season: the plains are flush, the light is golden, and there are almost no other vehicles. One night here is never enough.</div>
+        </div>
+        <div class="day-img">
+          <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=300&q=75" alt="Ndutu">
+        </div>
+      </div>
+      <div class="day-item r">
+        <div class="day-num">4–5</div>
+        <div class="day-body">
+          <div class="day-location">Eastern Serengeti</div>
+          <div class="day-title">Two full days in the Serengeti</div>
+          <div class="day-desc">Move deeper into the Serengeti. Two nights at a seasonal tented camp near Seronera. Pre-dawn drives, long breakfasts, afternoon rest. December brings elephant herds to the woodlands and lion cubs to the kopjes. No rush, no checklist.</div>
+        </div>
+        <div class="day-img">
+          <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=300&q=75" alt="Serengeti">
+        </div>
+      </div>
+      <div class="day-item r">
+        <div class="day-num">6</div>
+        <div class="day-body">
+          <div class="day-location">Seronera → Kilimanjaro</div>
+          <div class="day-title">One last drive out</div>
+          <div class="day-desc">A pre-dawn game drive before the midday transfer to KIA — through acacia woodland and the long grass of the Seronera valley. Evening flight home, or onward.</div>
+        </div>
+        <div class="day-img">
+          <img src="https://images.unsplash.com/photo-1504432842672-1a79f78e4084?w=300&q=75" alt="Departure">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOODBOARD -->
+<section class="moodboard">
+  <div class="section-label r">Atmosphere</div>
+  <div class="section-title r2">What it looks like</div>
+  <p class="section-body r3">Editorial images from Tanzania's green season — the light, the landscape, the stillness.</p>
+  <div class="board-grid">
+    <div class="tile t1 r">
+      <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=900&q=80" alt="Tanzania landscape">
+      <div class="tile-caption">Southern Serengeti</div>
+    </div>
+    <div class="tile t2 r2">
+      <img src="https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=600&q=80" alt="Elephant Tanzania">
+      <div class="tile-caption">Elephant, Ndutu</div>
+    </div>
+    <div class="tile t3 r3">
+      <img src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=700&q=80" alt="Giraffe landscape">
+      <div class="tile-caption">Giraffe at dusk</div>
+    </div>
+    <div class="tile t4 r">
+      <img src="https://images.unsplash.com/photo-1504432842672-1a79f78e4084?w=500&q=80" alt="Safari camp">
+      <div class="tile-caption">Camp life</div>
+    </div>
+    <div class="tile t5 r2">
+      <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=700&q=80" alt="Green Serengeti">
+      <div class="tile-caption">Green season plains</div>
+    </div>
+    <div class="tile t6 r3">
+      <img src="https://images.unsplash.com/photo-1568099091079-9e9b0c43c9a1?w=800&q=80" alt="Ngorongoro crater">
+      <div class="tile-caption">Ngorongoro Crater</div>
+    </div>
+  </div>
+</section>
+
+<!-- OPERATORS -->
+<section class="operators-section">
+  <div class="section-label r">Trusted operators</div>
+  <div class="section-title r2">Who to book with</div>
+  <p class="section-body r3">These three operators understand what this kind of safari is about. None of them are chasing volume.</p>
+  <div class="operators-grid">
+    <div class="op-card r">
+      <div class="op-img">
+        <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=600&q=80" alt="Wayo Africa">
+      </div>
+      <div class="op-body">
+        <div class="op-tag">Boutique operator</div>
+        <div class="op-name">Wayo Africa</div>
+        <div class="op-desc">Tanzania specialists with deep field knowledge and walking safari expertise. Small groups, thoughtful guiding, genuine naturalists on staff.</div>
+      </div>
+    </div>
+    <div class="op-card r2">
+      <div class="op-img">
+        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=600&q=80" alt="Asilia Africa">
+      </div>
+      <div class="op-body">
+        <div class="op-tag">Conservation-led</div>
+        <div class="op-name">Asilia Africa</div>
+        <div class="op-desc">Owner of Namiri Plains and other landmark camps. Rigorous conservation focus, exceptional food and guiding. December rates often discounted.</div>
+      </div>
+    </div>
+    <div class="op-card r3">
+      <div class="op-img">
+        <img src="https://images.unsplash.com/photo-1504432842672-1a79f78e4084?w=600&q=80" alt="Nomad Tanzania">
+      </div>
+      <div class="op-body">
+        <div class="op-tag">Pioneer operator</div>
+        <div class="op-name">Nomad Tanzania</div>
+        <div class="op-desc">One of the original boutique operators. Their mobile and seasonal camps are quietly exceptional. The guiding culture here is old-school in the best sense.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="enquire">
+  <div class="cta-inner">
+    <div class="section-label r">Get started</div>
+    <div class="section-title r2">Request a custom<br><em>early-December quote.</em></div>
+    <p class="section-body r3">Tell us your dates, travel style, and budget. We'll put together a considered itinerary — no generic packages, no upselling.</p>
+    <a class="cta-btn r" href="mailto:frank@example.com?subject=Tanzania%20Safari%20Enquiry%20%E2%80%94%20December%202026">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Begin your enquiry
+    </a>
+    <span class="cta-note r2">Typically 24-hour response · No obligation</span>
+  </div>
+</section>
+
+<footer>
+  <span>Tanzania Safari &nbsp;·&nbsp; December 2026</span>
+  <a href="index.html">View full itinerary &rarr;</a>
+</footer>
+
+<script>
+  // Progress bar
+  const prog = document.getElementById('prog');
+  const nav  = document.getElementById('nav');
+  const heroImg = document.getElementById('heroImg');
+
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    prog.style.width = pct + '%';
+
+    // Nav
+    if (window.scrollY > 60) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+
+    // Hero parallax
+    if (window.scrollY < window.innerHeight) {
+      heroImg.style.transform = `translateY(${window.scrollY * 0.35}px)`;
+    }
+  }, { passive: true });
+
+  // Scroll reveal
+  const items = document.querySelectorAll('.r,.r2,.r3');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  items.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
