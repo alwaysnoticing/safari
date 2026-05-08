@@ -520,6 +520,177 @@
         border-top: 1px solid var(--border);
       }
 
+      /* ── PROGRESS BAR ── */
+      .scroll-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        width: 0%;
+        background: linear-gradient(
+          90deg,
+          var(--gold),
+          #e8c96a,
+          var(--green-mid)
+        );
+        z-index: 9999;
+        transition: width 0.1s linear;
+      }
+
+      /* ── HERO ENHANCEMENTS ── */
+      .hero {
+        min-height: 92vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .hero-particles {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .particle {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(201, 168, 76, 0.55);
+        animation: drift linear infinite;
+      }
+      @keyframes drift {
+        0% {
+          transform: translateY(110vh) scale(0.5);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 0.6;
+        }
+        100% {
+          transform: translateY(-10vh) scale(1.1);
+          opacity: 0;
+        }
+      }
+      .hero-scroll-hint {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        animation: bounce 2s ease-in-out infinite;
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(6px);
+        }
+      }
+      .hero-scroll-hint svg {
+        opacity: 0.5;
+      }
+
+      /* eyebrow fade-in */
+      .hero-eyebrow {
+        animation: fadeDown 0.9s ease both;
+      }
+      .hero h1 {
+        animation: fadeDown 0.9s 0.15s ease both;
+      }
+      .hero-sub {
+        animation: fadeDown 0.9s 0.3s ease both;
+      }
+      .hero-badges {
+        animation: fadeDown 0.9s 0.45s ease both;
+      }
+      @keyframes fadeDown {
+        from {
+          opacity: 0;
+          transform: translateY(-18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ── SCROLL REVEAL ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(32px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── DAY CARD ENHANCEMENTS ── */
+      .card-day-badge {
+        position: relative;
+        overflow: hidden;
+      }
+      .card-day-badge::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.08) 0%,
+          transparent 60%
+        );
+        pointer-events: none;
+      }
+      .day-card:hover .card-day-badge {
+        background: var(--green-mid);
+        transition: background 0.3s ease;
+      }
+      .day-card:hover .card-camp-name {
+        color: var(--green-mid);
+        transition: color 0.3s ease;
+      }
+
+      /* ── ROUTE TIMELINE ── */
+      .timeline-connector {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 2rem;
+        margin: -0.75rem 0;
+        position: relative;
+        z-index: 1;
+      }
+      .timeline-connector::before {
+        content: "";
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          var(--green-forest),
+          var(--gold)
+        );
+        opacity: 0.35;
+      }
+
+      /* ── SECTION HEADING ANIMATION ── */
+      .section-heading-line {
+        transform-origin: left;
+        transition: transform 0.8s ease;
+      }
+
       /* ── RESPONSIVE ── */
       @media (max-width: 600px) {
         .hero {
@@ -553,8 +724,10 @@
     </style>
   </head>
   <body>
+    <div class="scroll-bar" id="scrollBar"></div>
     <!-- HERO -->
     <header class="hero">
+      <div class="hero-particles" id="heroParticles"></div>
       <div class="hero-eyebrow">Curated Itinerary</div>
       <h1>Tanzania Safari<br /><em>December 2026</em></h1>
       <p class="hero-sub">5 nights · 6 days · Landscape &amp; Solitude</p>
@@ -610,20 +783,35 @@
           Green season · Low crowds
         </span>
       </div>
+      <div class="hero-scroll-hint">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+        Scroll
+      </div>
     </header>
 
     <div class="container">
       <!-- ITINERARY -->
       <div class="section-heading">
-        <h2>The Route</h2>
+        <h2 class="reveal">The Route</h2>
         <div class="section-heading-line"></div>
       </div>
 
       <div class="itinerary">
         <!-- Day 1 -->
-        <div class="day-card">
+        <div class="day-card reveal">
           <div class="card-header">
-            <div class="card-day-badge">
+            <div class="card-day-badge pulse">
               <div class="card-day-label">Day</div>
               <div class="card-day-num">1</div>
             </div>
@@ -744,8 +932,9 @@
           </div>
         </div>
 
+        <div class="timeline-connector"></div>
         <!-- Day 2 -->
-        <div class="day-card">
+        <div class="day-card reveal">
           <div class="card-header">
             <div class="card-day-badge">
               <div class="card-day-label">Day</div>
@@ -873,8 +1062,9 @@
           </div>
         </div>
 
+        <div class="timeline-connector"></div>
         <!-- Day 3 -->
-        <div class="day-card">
+        <div class="day-card reveal">
           <div class="card-header">
             <div class="card-day-badge">
               <div class="card-day-label">Day</div>
@@ -999,8 +1189,9 @@
           </div>
         </div>
 
+        <div class="timeline-connector"></div>
         <!-- Day 4–5 -->
-        <div class="day-card">
+        <div class="day-card reveal">
           <div class="card-header">
             <div class="card-day-badge">
               <div class="card-day-label">Days</div>
@@ -1127,8 +1318,9 @@
           </div>
         </div>
 
+        <div class="timeline-connector"></div>
         <!-- Day 6 -->
-        <div class="day-card departure">
+        <div class="day-card departure reveal">
           <div class="card-header">
             <div class="card-day-badge">
               <div class="card-day-label">Day</div>
@@ -1184,12 +1376,12 @@
       <!-- /itinerary -->
 
       <!-- WHY DECEMBER -->
-      <div class="section-heading">
+      <div class="section-heading reveal">
         <h2>Why early December?</h2>
         <div class="section-heading-line"></div>
       </div>
       <div class="faq-grid">
-        <div class="faq-item">
+        <div class="faq-item reveal">
           <div class="faq-q">Green-season landscape</div>
           <div class="faq-a">
             Short rains (Nov–Dec) create lush plains, dramatic skies, and
@@ -1197,7 +1389,7 @@
             cinematic time of year.
           </div>
         </div>
-        <div class="faq-item">
+        <div class="faq-item reveal">
           <div class="faq-q">Dramatically fewer crowds</div>
           <div class="faq-a">
             Schools are still in session (holidays start late Dec). Tourist
@@ -1205,7 +1397,7 @@
             You'll have guides almost to yourself.
           </div>
         </div>
-        <div class="faq-item">
+        <div class="faq-item reveal">
           <div class="faq-q">Calving season at Ndutu</div>
           <div class="faq-a">
             Wildebeest and zebra are giving birth, creating calm, concentrated
@@ -1213,7 +1405,7 @@
             and predators in green grass. Serene and authentic.
           </div>
         </div>
-        <div class="faq-item">
+        <div class="faq-item reveal">
           <div class="faq-q">Perfect for your travel style</div>
           <div class="faq-a">
             You get exactly what you want: landscape + solitude + excellent
@@ -1223,17 +1415,17 @@
       </div>
 
       <!-- BUDGET -->
-      <div class="section-heading">
+      <div class="section-heading reveal">
         <h2>Budget per person</h2>
         <div class="section-heading-line"></div>
       </div>
       <div class="budget-grid">
-        <div class="budget-card">
+        <div class="budget-card reveal">
           <div class="budget-label">International flights</div>
           <div class="budget-value">$1,000–1,800</div>
         </div>
         <div class="budget-card">
-          <div class="budget-label">Camps &amp; lodging</div>
+          <div class="budget-label reveal">Camps &amp; lodging</div>
           <div class="budget-value">$1,200–1,600</div>
         </div>
         <div class="budget-card">
@@ -1258,7 +1450,7 @@
       </div>
 
       <!-- BOOKING TIPS -->
-      <div class="section-heading">
+      <div class="section-heading reveal">
         <h2>Booking tips</h2>
         <div class="section-heading-line"></div>
       </div>
@@ -1316,7 +1508,7 @@
       </div>
 
       <!-- TARANGIRE FAQ -->
-      <div class="section-heading">
+      <div class="section-heading reveal">
         <h2>Should I include Tarangire?</h2>
         <div class="section-heading-line"></div>
       </div>
@@ -1336,7 +1528,7 @@
       </div>
 
       <!-- CALLOUT -->
-      <div class="callout">
+      <div class="callout reveal">
         <p>
           <strong>Bottom line:</strong> Your instincts are excellent. Early
           December in Tanzania is deeply underrated for travelers who want
@@ -1352,5 +1544,76 @@
     <footer class="site-footer">
       Tanzania Safari · December 2026 · For personal use
     </footer>
+    <script>
+      // ── Scroll progress bar ──
+      const scrollBar = document.getElementById("scrollBar");
+      window.addEventListener(
+        "scroll",
+        () => {
+          const pct =
+            (window.scrollY /
+              (document.body.scrollHeight - window.innerHeight)) *
+            100;
+          scrollBar.style.width = pct + "%";
+        },
+        { passive: true },
+      );
+
+      // ── Hero particles ──
+      const container = document.getElementById("heroParticles");
+      const COUNT = 28;
+      for (let i = 0; i < COUNT; i++) {
+        const p = document.createElement("div");
+        p.className = "particle";
+        const size = 2 + Math.random() * 4;
+        p.style.cssText = [
+          `width:${size}px`,
+          `height:${size}px`,
+          `left:${Math.random() * 100}%`,
+          `animation-duration:${8 + Math.random() * 14}s`,
+          `animation-delay:${-Math.random() * 20}s`,
+          `opacity:${0.3 + Math.random() * 0.5}`,
+        ].join(";");
+        container.appendChild(p);
+      }
+
+      // ── Scroll reveal ──
+      const reveals = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+              // stagger siblings in the same parent
+              const siblings = [
+                ...entry.target.parentElement.querySelectorAll(
+                  ".reveal:not(.visible)",
+                ),
+              ];
+              const idx = siblings.indexOf(entry.target);
+              setTimeout(() => {
+                entry.target.classList.add("visible");
+              }, idx * 80);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      reveals.forEach((el) => observer.observe(el));
+
+      // ── Parallax hero on scroll ──
+      const hero = document.querySelector(".hero");
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          if (y < hero.offsetHeight) {
+            hero.style.backgroundPositionY = `${y * 0.4}px`;
+            container.style.transform = `translateY(${y * 0.25}px)`;
+          }
+        },
+        { passive: true },
+      );
+    </script>
   </body>
 </html>
