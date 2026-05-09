@@ -611,6 +611,89 @@
         justify-content: center;
         flex-wrap: wrap;
       }
+      .cta-btns--spaced {
+        margin-bottom: 2.5rem;
+      }
+      .quote-form {
+        max-width: 680px;
+        margin: 3rem auto 0;
+        text-align: left;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+      .form-group.full {
+        grid-column: 1 / -1;
+      }
+      .form-group label {
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.45);
+      }
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        padding: 0.85rem 1.1rem;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+        width: 100%;
+        resize: vertical;
+      }
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .form-group input:focus,
+      .form-group textarea:focus,
+      .form-group select:focus {
+        border-color: var(--sand);
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .form-group select option {
+        background: var(--green);
+        color: var(--ivory);
+      }
+      .form-submit {
+        margin-top: 1.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .form-note {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.25);
+        letter-spacing: 0.5px;
+      }
+      .form-success {
+        display: none;
+        text-align: center;
+        padding: 3rem 0 1rem;
+        color: var(--sand);
+        font-size: 1.1rem;
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+      }
       .cta-note {
         display: block;
         margin-top: 1.5rem;
@@ -805,6 +888,16 @@
         .cta-btn {
           width: 100%;
           justify-content: center;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        .form-submit {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .form-submit .cta-btn {
+          text-align: center;
         }
         .quote-bar {
           flex-direction: column;
@@ -1177,14 +1270,14 @@
       <div class="cta-inner">
         <div class="section-label r">Submit a quote</div>
         <div class="section-title r2">
-          Read the itinerary.<br /><em>Then pitch me.</em>
+          Read the itinerary.<br /><em>Then pitch us.</em>
         </div>
         <p class="section-body r3">
-          I've published the full route, camps, and target budget. If you can
-          deliver this trip — or something better at the same price — send me
-          your quote. Two travellers, early December 2026.
+          We've published the full route, camps, and target budget. If you can
+          deliver this trip — or something better — we want to hear from you.
+          Two travellers, early December 2026.
         </p>
-        <div class="cta-btns r">
+        <div class="cta-btns r cta-btns--spaced">
           <a class="cta-btn" href="itinerary.html">
             <svg
               width="14"
@@ -1203,34 +1296,133 @@
             </svg>
             Read the full itinerary
           </a>
-          <a
-            class="cta-btn cta-btn-ghost"
-            href="mailto:finger.print@me.com?subject=Tanzania%20Safari%20Quote%20%E2%80%94%20December%202026&body=Hi%2C%0A%0AI%27ve%20reviewed%20your%20itinerary%20at%20https%3A%2F%2Falwaysnoticing.github.io%2Fsafari%2Fitinerary.html%0A%0AHere%20is%20my%20quote%20for%202%20travellers%2C%20Dec%201%E2%80%936%202026%3A%0A%0ATotal%20price%3A%20%24%0AIncludes%3A%0A%0AOperator%20name%3A%0AWebsite%3A%0AContact%3A"
-          >
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path
-                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-              />
-              <polyline points="22,6 12,13 2,6" />
-            </svg>
-            Send your quote
-          </a>
         </div>
-        <span class="cta-note r2"
-          >Quotes reviewed on a rolling basis · Booking decision by Oct
-          2026</span
+
+        <form
+          class="quote-form r2"
+          action="https://formspree.io/f/mpqboaan"
+          method="POST"
+          id="quoteForm"
         >
+          <div class="form-row">
+            <div class="form-group">
+              <label for="op_name">Operator name</label>
+              <input
+                type="text"
+                id="op_name"
+                name="operator_name"
+                placeholder="e.g. Wayo Africa"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="op_website">Website</label>
+              <input
+                type="url"
+                id="op_website"
+                name="operator_website"
+                placeholder="https://"
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contact_name">Your name</label>
+              <input
+                type="text"
+                id="contact_name"
+                name="contact_name"
+                placeholder="Full name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="contact_email">Email address</label>
+              <input
+                type="email"
+                id="contact_email"
+                name="email"
+                placeholder="you@operator.com"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="proposed_camps">Proposed camps / route</label>
+              <textarea
+                id="proposed_camps"
+                name="proposed_camps"
+                rows="3"
+                placeholder="List your recommended camps, any route adjustments, and how you'd structure the 7 nights…"
+              ></textarea>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="total_price">Total price (USD, 2 pax)</label>
+              <input
+                type="text"
+                id="total_price"
+                name="total_price"
+                placeholder="e.g. $11,400 all-inclusive"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="includes">What's included</label>
+              <input
+                type="text"
+                id="includes"
+                name="includes"
+                placeholder="Flights, transfers, park fees…"
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="notes">Anything else to add</label>
+              <textarea
+                id="notes"
+                name="notes"
+                rows="3"
+                placeholder="Why you're the right fit, any questions, alternative ideas…"
+              ></textarea>
+            </div>
+          </div>
+          <div class="form-submit">
+            <span class="form-note"
+              >Quotes reviewed on a rolling basis · Decision by Oct 2026</span
+            >
+            <button type="submit" class="cta-btn">Submit quote</button>
+          </div>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          Thank you — we'll be in touch.
+        </div>
       </div>
     </section>
+
+    <script>
+      const form = document.getElementById("quoteForm");
+      const success = document.getElementById("formSuccess");
+      if (form) {
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const data = new FormData(form);
+          const res = await fetch(form.action, {
+            method: "POST",
+            body: data,
+            headers: { Accept: "application/json" },
+          });
+          if (res.ok) {
+            form.style.display = "none";
+            success.style.display = "block";
+          }
+        });
+      }
+    </script>
 
     <footer>
       <span>Tanzania Safari &nbsp;·&nbsp; December 2026</span>
